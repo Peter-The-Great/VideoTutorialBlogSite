@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,700&display=swap');
+header {
+	background-color: black;
+	background-image: url("../uploads/profile/background2.jpg");
+    background-size: cover;
+
+    background-position: center;
+    min-height: 250px;
+    color: white;
+}
+.contact-header {
+    background-image: url("../uploads/profile/contact.jpg") !important;
+}
+.biografie {
+	background-image: url("../images/biografie.jpg") !important;  
+}
+.archief {
+    background-image: url("../uploads/profile/projectback.png") !important;
+    color: black;
+}
+/* header p{
+	font-size: 150%;
+} */
+/* header img{
+    border-radius: 50%;
+	text-align: center;
+} */
+
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+nav {
+    font-size: large;
+}
+nav ul li {
+    padding-left: 5px;
+}
+
+header .container {
+    padding-top: 90px;
+}
+
+.biografie-container {
+    padding-top: 30px !important;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 40px;
+}
+
+#article, #contact, #biografie {
+	margin-top: 40px;
+	
+}
+
+#article .card .card-body {
+	color: white;
+	background: linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.35) 8%);
+}
+
+.read {
+    margin-bottom: -10px;
+}
+
+.colum {
+    margin-bottom: 30px;
+}
+
+.card-body h3 {
+    font-weight: bold;
+}
+.card-body a {
+    color: white;
+}
+.shadowing{
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2), 0 4px 20px 0 rgba(0,0,0,0.19);
+    padding: 25px;
+}
+article {
+    background-size: cover; background-position: center;
+}
+.maxw {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+.footer{
+	width: 100%;
+    bottom: 0;
+    height: 60px;
+    line-height: 60px;
+    background-color: #f5f5f5;
+}
