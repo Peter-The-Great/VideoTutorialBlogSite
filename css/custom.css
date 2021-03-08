@@ -41,7 +41,7 @@ header .container {
     padding-top: 90px;
 }
 
-.biografie-container {
+.video-container {
     padding-top: 30px !important;
 }
 
@@ -50,7 +50,7 @@ header h1 {
     font-size: 40px;
 }
 
-#article, #contact, #biografie {
+#article, #contact, #video {
 	margin-top: 40px;
 	
 }
@@ -84,6 +84,19 @@ article {
 .maxw {
     margin-right: 20px;
     margin-left: 20px;
+}
+.iframe-container{
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%;
+	height: 0;
+}
+.iframe-container iframe{
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
 .footer{
 	width: 100%;
