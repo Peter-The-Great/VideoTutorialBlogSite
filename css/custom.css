@@ -1,4 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,700&display=swap');
+*/
+html {
+    position: relative;
+    min-height: 100%;
+}
 header {
 	background-color: black;
 	background-image: url("../uploads/profile/background2.jpg");
@@ -99,6 +104,7 @@ article {
 	height: 100%;
 }
 .footer{
+    position: absolute;
 	width: 100%;
     bottom: 0;
     height: 60px;

@@ -12,12 +12,11 @@ session_start();
     <?php 
     require("components/style.php");
     ?>
-    <title>Home - <?php echo $openname ?></title>
+    <title>Contact - <?php echo $open ?></title>
 </head>
 <body>
 	<?php require("components/navbar.php"); ?>
-	<main>
-    </main>
+	
     <?php
     require("components/footer.php");
     require("components/scripts.php");

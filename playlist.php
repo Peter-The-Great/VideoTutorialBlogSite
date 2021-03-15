@@ -12,7 +12,7 @@ session_start();
     <?php 
     require("components/style.php");
     ?>
-    <title>Home - <?php echo $openname ?></title>
+    <title>Playlists - <?php echo $open ?></title>
 </head>
 <body>
 	<?php require("components/navbar.php"); ?>

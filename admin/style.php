@@ -1,5 +1,4 @@
 <?php
-$profileid = "52086616-c85c-4363-98f0-4dcd698ec356";
 $profilequery = $conn->prepare("SELECT `profile`, `realname` FROM `admin` WHERE `ID` = '52086616-c85c-4363-98f0-4dcd698ec356'");
 	$profilequery->execute();
 	$profilequery->store_result();
@@ -11,7 +10,8 @@ if ($profilequery->num_rows > 0) {
 }
 $profilequery->close();
 ?>
-<link rel="shortcut icon" type="image/x-icon" href="uploads/simg/logo-round.png">
-<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="css/fontawsome.css">
-<link rel="stylesheet" type="text/css" href="css/custom.css">
+<link rel="shortcut icon" type="image/x-icon" href="../uploads/simg/logo.png">
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../css/fontawsome.css">
+<link rel="stylesheet" type="text/css" href="../css/custom.css">
+<link rel="stylesheet" type="text/css" href="../css/start-bootstrap-styles.css">

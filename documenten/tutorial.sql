@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2021 at 07:39 AM
--- Server version: 10.1.47-MariaDB-0ubuntu0.18.04.1
--- PHP Version: 7.3.27
+-- Gegenereerd op: 15 mrt 2021 om 12:41
+-- Serverversie: 10.4.14-MariaDB
+-- PHP-versie: 7.4.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_84669`
+-- Database: `tutorial`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Tabelstructuur voor tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,10 +35,28 @@ CREATE TABLE `admin` (
   `realname` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Gegevens worden geëxporteerd voor tabel `admin`
+--
+
+INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`) VALUES
+('52086616-c85c-4363-98f0-4dcd698ec356 \r\n', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Mathijs54@Gmail.com', 'Mathijs Clasener');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subject`
+-- Tabelstructuur voor tabel `info`
+--
+
+CREATE TABLE `info` (
+  `id` int(1) NOT NULL,
+  `bio` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `subject`
 --
 
 CREATE TABLE `subject` (
@@ -49,22 +66,22 @@ CREATE TABLE `subject` (
   `subtext` text NOT NULL,
   `video` varchar(48) NOT NULL,
   `Leerlijn` varchar(30) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `date` datetime NOT NULL DEFAULT current_timestamp(),
+  `uitgelicht` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- --------------------------------------------------------
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `admin`
+-- Indexen voor tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `subject`
+-- Indexen voor tabel `subject`
 --
 ALTER TABLE `subject`
   ADD PRIMARY KEY (`ID`);

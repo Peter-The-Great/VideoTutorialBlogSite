@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('error_reporting', E_ALL);
     $user = 'root';
     $pass = '';
-    $db = 'Tutorial';
+    $db = 'tutorial';
     $host = '127.0.0.1';
 
     $conn = new mysqli($host, $user, $pass, $db) or die("Unable to connect");
