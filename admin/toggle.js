@@ -1,4 +1,19 @@
 //This will turn the text of a type password into a type text to make the text vissible
+$( document ).ready(function() {
+	var myDate = new Date();
+	var hrs = myDate.getHours();
+	var greet;
+	if (hrs < 12){
+		greet = 'Goedenmorgen';
+	}
+	else if (hrs >= 12 && hrs <= 17){
+		greet = 'Goedemiddag';
+	}
+else if (hrs >= 17 && hrs <= 24){
+	greet = 'Goedenavond ';
+}
+$("#Inloggen").html(""+ greet);
+});
 $("#showitbtn").click(function(){
     		var input = $("#password");
     		if (input.attr("type") == "password") {

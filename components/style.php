@@ -1,5 +1,4 @@
 <?php
-$profileid = "52086616-c85c-4363-98f0-4dcd698ec356";
 $profilequery = $conn->prepare("SELECT `profile`, `realname` FROM `admin` WHERE `ID` = '52086616-c85c-4363-98f0-4dcd698ec356'");
 	$profilequery->execute();
 	$profilequery->store_result();
