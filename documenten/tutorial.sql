@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 mrt 2021 om 12:41
+-- Gegenereerd op: 22 mrt 2021 om 16:35
 -- Serverversie: 10.4.14-MariaDB
 -- PHP-versie: 7.4.10
 
@@ -32,15 +32,16 @@ CREATE TABLE `admin` (
   `username` varchar(60) NOT NULL,
   `password` varchar(64) NOT NULL,
   `email` varchar(60) NOT NULL,
-  `realname` varchar(60) NOT NULL
+  `realname` varchar(60) NOT NULL,
+  `profile` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Gegevens worden geëxporteerd voor tabel `admin`
 --
 
-INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`) VALUES
-('52086616-c85c-4363-98f0-4dcd698ec356 \r\n', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Mathijs54@Gmail.com', 'Mathijs Clasener');
+INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`, `profile`) VALUES
+('52086616-c85c-4363-98f0-4dcd698ec356', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Mathijs54@Gmail.com', 'Mathijs Clasener', 'uploads/profile/logo.png');
 
 -- --------------------------------------------------------
 
@@ -60,12 +61,12 @@ CREATE TABLE `info` (
 --
 
 CREATE TABLE `subject` (
-  `ID` int(64) NOT NULL,
-  `Titel` varchar(64) NOT NULL,
-  `Text` longtext NOT NULL,
+  `id` int(64) NOT NULL,
+  `titel` varchar(64) NOT NULL,
+  `text` longtext NOT NULL,
   `subtext` text NOT NULL,
   `video` varchar(48) NOT NULL,
-  `Leerlijn` varchar(30) NOT NULL,
+  `leerlijn` enum('HTML','JS','CSS','PHP','Ruby','Jquery','Python','C#','SQL') NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp(),
   `uitgelicht` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -84,7 +85,7 @@ ALTER TABLE `admin`
 -- Indexen voor tabel `subject`
 --
 ALTER TABLE `subject`
-  ADD PRIMARY KEY (`ID`);
+  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
