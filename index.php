@@ -11,7 +11,7 @@ session_start();
     <?php 
     require("components/style.php");
     ?>
-    <title>Home - <?php echo $open ?></title>
+    <title>Home - <?php echo $open;?></title>
 </head>
 <body>
 	<?php require("components/navbar.php"); ?>

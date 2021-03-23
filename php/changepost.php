@@ -35,6 +35,8 @@ elseif ($Afbeeldingnaam != $Huidig && in_array($type, $Toegestaan)) {
         unlink($unlink.$Huidig);
         $imagenew = $map.$Afbeeldingnaam;
         $new_str = str_replace(' ', '', $imagenew);
+        $fileExt = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+        $new_str = $map . uniqid() . "_" . uniqid() . "." . $fileExt;
         move_uploaded_file($Tijdelijk, "../".$new_str);
         $sql = "UPDATE projects SET title=?, subtext=?, text=?, headimage=? WHERE id=?";
         if ($stmt = $conn->prepare($sql)) {

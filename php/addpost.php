@@ -27,6 +27,8 @@ function uuidv4(){
 //here we are making sure that the image is moved to its right location.
 $afbeelding = $map.$imagenaam;
 $new_str = str_replace(' ', '', $afbeelding);
+$fileExt = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+$new_str = $map . uniqid() . "_" . uniqid() . "." . $fileExt;
 if (in_array($type,$Toegestaan)){
     move_uploaded_file($Tijdelijk, "../".$new_str);
 }else{

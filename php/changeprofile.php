@@ -33,11 +33,14 @@ if(isset($_POST["username"],$_POST["password"],$_POST["openname"],$_POST["email"
 }
 elseif ($Afbeeldingnaam != $Huidig && in_array($type, $Toegestaan)) {
     unlink($unlink.$Huidig);
-    move_uploaded_file($Tijdelijk, "../".$map.$Afbeeldingnaam);
-    $newimg = $map.$Afbeeldingnaam;
+    $afbeelding = $map.$Afbeeldingnaam;
+    $new_str = str_replace(' ', '', $afbeelding);
+    $fileExt = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+    $new_str = $map . uniqid() . "_" . uniqid() . "." . $fileExt;
+    move_uploaded_file($Tijdelijk, "../".$new_str);
     $sql = "UPDATE users SET `username`=?, `password`=?, `openname`=?, email=?, `adres`=?,`phone`=?, `profile`=?, `phone`=?, `porto`=? WHERE id=1";
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("ssssssss", $_POST["username"], sha1($_POST["password"]), $_POST["openname"], $_POST["email"], $_POST["adres"], $newimg, $_POST["phone"], $_POST["port"]);
+        $stmt->bind_param("ssssssss", $_POST["username"], sha1($_POST["password"]), $_POST["openname"], $_POST["email"], $_POST["adres"], $new_str, $_POST["phone"], $_POST["port"]);
         $stmt->execute();
         $stmt->close();
         header("Location: ../admin/dashboard.php");
