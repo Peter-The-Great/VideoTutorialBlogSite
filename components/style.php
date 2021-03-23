@@ -1,7 +1,5 @@
 <?php
-$profileid = "059977c4-1c8e-4a83-a347-fd4e4c446191";
-$profilequery = $conn->prepare("SELECT `profile`, `openname`, `email` FROM `admin` WHERE `ID` = ?");
-    $profilequery->bind_param("i", $profileid);
+$profilequery = $conn->prepare("SELECT `profile`, `realname`, `email` FROM `admin` WHERE `ID` = '52086616-c85c-4363-98f0-4dcd698ec356'");
 	$profilequery->execute();
 	$profilequery->store_result();
 if ($profilequery->num_rows > 0) {

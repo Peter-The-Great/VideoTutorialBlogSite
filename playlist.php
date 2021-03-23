@@ -1,6 +1,23 @@
 <?php
 require("php/database.php");
 session_start();
+if (!isset($_GET['id'])) {
+    header("Location: /tutorial/");
+    return false;
+}
+if ($stmt = $conn->prepare("SELECT titel,text, image, video, leerlijn FROM subjects WHERE id = ?")) {
+    $stmt->bind_param("s", $_GET["id"]);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        $stmt->bind_result($titel, $text, $image, $video, $leerlijn);
+        $stmt->fetch();
+    } else {
+        header("Location: index.php");
+    }
+    $stmt->close();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +29,14 @@ session_start();
     <?php 
     require("components/style.php");
     ?>
-    <title>Playlists - <?php echo $open ?></title>
+    <title><?php echo $open; ?> - Playlists - <?php echo "something";?></title>
 </head>
 <body>
 	<?php require("components/navbar.php"); ?>
 	<main>
+        <?php
+
+        ?>
     </main>
     <?php
     require("components/footer.php");

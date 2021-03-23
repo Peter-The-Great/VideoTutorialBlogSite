@@ -11,7 +11,7 @@ if ($stmt = $conn->prepare("SELECT titel,text, image, video, leerlijn FROM subje
 	$stmt->store_result();
 
 	if ($stmt->num_rows > 0) {
-		$stmt->bind_result($titel, $text, $video, $image, $leerlijn);
+		$stmt->bind_result($titel, $text, $image, $video, $leerlijn);
 		$stmt->fetch();
 	} else {
 		header("Location: index.php");
@@ -45,13 +45,10 @@ if ($stmt = $conn->prepare("SELECT titel,text, image, video, leerlijn FROM subje
 				echo "<a class='maxw mt-3' href='admin/dashboard.php'>← Terug naar dashboard</a>";
 				} ?>
 		</div>
-
 	</section>
-	<!-- Optional JavaScript -->
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<?php
 	require("components/footer.php"); 
-	require("components/scripts.php"); ?>
+	require("components/scripts.php");
+	?>
 </body>
-
 </html>

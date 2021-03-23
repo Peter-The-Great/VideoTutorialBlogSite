@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 22 mrt 2021 om 16:35
+-- Gegenereerd op: 23 mrt 2021 om 20:35
 -- Serverversie: 10.4.14-MariaDB
 -- PHP-versie: 7.4.10
 
@@ -46,6 +46,32 @@ INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`, `profile
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `cat`
+--
+
+CREATE TABLE `cat` (
+  `ID` varchar(64) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `headimage` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `cat`
+--
+
+INSERT INTO `cat` (`ID`, `name`, `headimage`) VALUES
+('1', 'HTML', 'uploads/simg/HTML.png'),
+('2', 'PHP', 'uploads/simg/PHP.svg'),
+('3', 'C#', 'uploads/simg/CS.png'),
+('4', 'CSS', 'uploads/simg/CSS3.svg'),
+('5', 'JS', 'uploads/simg/JS.svg'),
+('6', 'Jquery', 'uploads/simg/jquery.png'),
+('7', 'Python', 'uploads/simg/python.png'),
+('8', 'Ruby', 'uploads/simg/Ruby.svg');
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `info`
 --
 
@@ -79,6 +105,12 @@ CREATE TABLE `subject` (
 -- Indexen voor tabel `admin`
 --
 ALTER TABLE `admin`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexen voor tabel `cat`
+--
+ALTER TABLE `cat`
   ADD PRIMARY KEY (`ID`);
 
 --
