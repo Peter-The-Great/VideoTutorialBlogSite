@@ -1,7 +1,8 @@
 <?php
 require("php/database.php");
 session_start();
-
+$sql = "SELECT name, subtext, headimage FROM cat;";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,83 +20,25 @@ session_start();
 	<?php require("components/navbar.php"); ?>
 	<main id="article">
     <div class="container">
-    <h1 class="display-1 text-center fw-bolder">Vandaag in de Spotlight:</h1>
-    <div class="mt-4 mb-5 d-flex justify-content-center">
-    <div class='column me-5'>
-                <article class='card' style='background-image: url("uploads/simg/HTML.png");'>
-                    <div class='card-body'>
-                        <h2>HTML5</h2>
-                        <p>Bekijk hier meerdere tutorials van de programmeertaal HTML5.</p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/HTML5'>Lees verder...</a></p>
-                    </div>
-                </article>
-                </div>    
-                <div class='column'>
-                <article class='card' style='background-image: url("uploads/simg/PHP.svg");'>
-                    <div class='card-body'>
-                        <h2>PHP</h2>
-                        <p>Bekijk hier meerdere tutorials van de programmeertaal PHP.</p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/PHP'>Lees verder...</a></p>
-                    </div>
-                </article>
-                </div>
-    </div>
-    <h2 class="fw-bold text-center mb-5">Bekijk hieronder andere programmeertalen:</h2>
+    <h1 class="fw-bold text-center mb-5">Bekijk hieronder andere programmeertalen:</h1>
     <div class="row mb-5">
-    <div class='colum col-sm-12 col-md-6 col-lg-4'>
-                <article class='card' style='background-image: url("uploads/simg/python.png"); '>
-                    <div class='card-body'>
-                        <h2>Python</h2>
-                        <p></p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/Python_(programmeertaal)'>Lees verder...</a></p>
-                    </div>
-                </article>
-                </div>
+    <?php
+                foreach ($result as $item) {
+                $image = $item['headimage'];
+                echo "
                 <div class='colum col-sm-12 col-md-6 col-lg-4'>
-                <article class='card' style='background-image: url("uploads/simg/jquery.png"); '>
+                <article class='card' style='background-image: url(";
+                echo $image; 
+                echo "); '>
                     <div class='card-body'>
-                        <h2>Jquery</h2>
-                        <p></p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/JQuery'>Lees verder...</a></p>
+                        <h2>".$item['name']."</h2>
+                        <p>".$item['subtext']."</p>
+                        <p class='read'><a class='stretched-link' href='playlist.php?id=".$item['name']."'>Lees verder...</a></p>
                     </div>
                 </article>
-                </div>
-                <div class='colum col-sm-12 col-md-6 col-lg-4'>
-                <article class='card' style='background-image: url("uploads/simg/CSS3.svg"); '>
-                    <div class='card-body'>
-                        <h2>CSS3</h2>
-                        <p></p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/Cascading_Style_Sheets'>Lees verder...</a></p>
-                    </div>
-                </article>
-                </div>
-                <div class='colum col-sm-12 col-md-6 col-lg-4'>
-                <article class='card' style='background-image: url("uploads/simg/Ruby.svg"); '>
-                    <div class='card-body'>
-                        <h2>Ruby</h2>
-                        <p></p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/Ruby_(programmeertaal)'>Lees verder...</a></p>
-                    </div>
-                </article>
-                </div>
-                <div class='colum col-sm-12 col-md-6 col-lg-4'>
-                <article class='card' style='background-image: url("uploads/simg/CS.png"); '>
-                    <div class='card-body'>
-                        <h2>C#</h2>
-                        <p></p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/C%E2%99%AF'>Lees verder...</a></p>
-                    </div>
-                </article>
-                </div>
-                <div class='colum col-sm-12 col-md-6 col-lg-4'>
-                <article class='card' style='background-image: url("uploads/simg/JS.svg"); '>
-                    <div class='card-body'>
-                        <h2>Javascript</h2>
-                        <p></p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/JavaScript'>Lees verder...</a></p>
-                    </div>
-                </article>
-                </div>
+                </div>";
+                }
+                ?>
             </div>
         </div>
     </main>

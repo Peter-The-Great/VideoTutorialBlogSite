@@ -5,7 +5,7 @@ if (!isset($_GET['id'])) {
 	header("Location: ../index.php");
 	return false;
 }
-if ($stmt = $conn->prepare("SELECT titel,text, image, video, leerlijn FROM subjects WHERE id = ?")) {
+if ($stmt = $conn->prepare("SELECT titel,text, image, video, leerlijn FROM subject WHERE id = ?")) {
 	$stmt->bind_param("s", $_GET["id"]);
 	$stmt->execute();
 	$stmt->store_result();
@@ -30,19 +30,20 @@ if ($stmt = $conn->prepare("SELECT titel,text, image, video, leerlijn FROM subje
 </head>
 
 <body>
+	<?php require("components/navbar.php"); ?>
 	<header style="background-image: url(<?php echo $image ?>) !important;">
 		<div class="container text-center">
 			<h1><?php echo $titel; ?></h1>
 		</div>
 	</header>
-	<?php require("components/navbar.php"); ?>
-	<section class="container" id="biografie">
+	<section class="mt-3 mb-5 container" id="article">
 		<div class="row">
 			<span class="maxw"><?php echo $text; ?></span>
-			<br><br>
-			<a class="maxw mb-1" href="index.php">← Terug naar homepage</a>
+			<iframe width="560" height="315" <?php echo "src='https://www.youtube.com/embed/". $video ."'";  ?> title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<br><br>
+			<a class="maxw mb-2" <?php echo "href='playlist.php?id=". $leerlijn ."'"; ?>>← Terug naar lesstof</a>
 			<?php if(isset($_SESSION["loggedin"])) {
-				echo "<a class='maxw mt-3' href='admin/dashboard.php'>← Terug naar dashboard</a>";
+				echo "<a class='maxw mb-3' href='admin/dashboard.php'>← Terug naar dashboard</a>";
 				} ?>
 		</div>
 	</section>

@@ -5,19 +5,8 @@ if (!isset($_GET['id'])) {
     header("Location: /tutorial/");
     return false;
 }
-if ($stmt = $conn->prepare("SELECT titel,text, image, video, leerlijn FROM subjects WHERE id = ?")) {
-    $stmt->bind_param("s", $_GET["id"]);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($titel, $text, $image, $video, $leerlijn);
-        $stmt->fetch();
-    } else {
-        header("Location: index.php");
-    }
-    $stmt->close();
-}
+$sql = "SELECT id, titel, image, subtext FROM subject WHERE leerlijn = '". $_GET["id"] ."';";
+$result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,10 +22,32 @@ if ($stmt = $conn->prepare("SELECT titel,text, image, video, leerlijn FROM subje
 </head>
 <body>
 	<?php require("components/navbar.php"); ?>
-	<main>
-        <?php
-
-        ?>
+	<main id="article">
+    <div class="container">
+    <h1 class="fw-bold text-center mb-5"><?php echo $_GET["id"];?> Lesstoffen</h1>
+    <div class="row mb-5">
+    <?php
+    if ($result->num_rows === 0){
+        echo "<p>Er zijn geen videos gevonden probeer het later nog een keer of notificeer de leraar voor meer informatie.</p>";
+      }
+                foreach ($result as $item) {
+                $image = $item['image'];
+                echo "
+                <div class='colum col-sm-12 col-md-6 col-lg-4'>
+                <article class='card' style='background-image: url(";
+                echo $image; 
+                echo "); '>
+                    <div class='card-body'>
+                        <h2>".$item['titel']."</h2>
+                        <p>".$item['subtext']."</p>
+                        <p class='read'><a class='stretched-link' href='video.php?id=".$item['id']."'>Lees verder...</a></p>
+                    </div>
+                </article>
+                </div>";
+                }
+                ?>
+            </div>
+        </div>
     </main>
     <?php
     require("components/footer.php");

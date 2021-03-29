@@ -5,7 +5,8 @@ if (!isset($_SESSION["loggedin"])) {
     header("Location: ../index.php");
     exit();
 }
-
+$sql = "SELECT name FROM cat;";
+$result = $conn->query($sql);
 ?>
 <!doctype html>
 <html lang="en">
@@ -68,6 +69,18 @@ if (!isset($_SESSION["loggedin"])) {
             <div class="form-group">
                 <label for="foto">Achtergrond Foto</label>
                 <input name="image" type="file" required>
+            </div>
+            <div class="form-group">
+                <label for="leerlijn">Leerlijn</label>
+                <select required name="leer">
+                <option selected disabled>-- selecteer leerlijn --</option>
+                <?php
+                foreach ($result as $item) {
+                    echo "<option value='".$item['name']."'></option>";
+                    echo $item['name'];
+                }
+                ?>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" name="submit" class="btn btn-dark">

@@ -8,7 +8,7 @@
     }
 
 //here we are making a prepared statement so that we can use it to find our user.
-    if($stmt = $conn->prepare("SELECT id,username,password FROM users WHERE username = ?")) {
+    if($stmt = $conn->prepare("SELECT id,username,password FROM admin WHERE username = ?")) {
         $stmt->bind_param("s", $_POST["username"]);
         $stmt->execute();
         $stmt->store_result();
