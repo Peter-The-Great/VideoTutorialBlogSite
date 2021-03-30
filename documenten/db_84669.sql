@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 23, 2021 at 08:59 AM
+-- Generation Time: Mar 30, 2021 at 07:12 AM
 -- Server version: 10.1.47-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.3.27
 
@@ -47,13 +47,48 @@ INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`, `profile
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cat`
+--
+
+CREATE TABLE `cat` (
+  `ID` int(7) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `subtext` text NOT NULL,
+  `headimage` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cat`
+--
+
+INSERT INTO `cat` (`ID`, `name`, `subtext`, `headimage`) VALUES
+(1, 'HTML', 'Making the structure of the page', 'uploads/simg/HTML.png'),
+(2, 'PHP', 'Backend of every website', 'uploads/simg/PHP.svg'),
+(3, 'C#', 'Code for Unity and other .net framworks', 'uploads/simg/CS.png'),
+(4, 'CSS', 'Styling a pretty webpage', 'uploads/simg/CSS3.svg'),
+(5, 'JS', 'Making things interactive', 'uploads/simg/JS.svg'),
+(6, 'Jquery', 'Making things easier in javascript', 'uploads/simg/jquery.png'),
+(7, 'Python', 'Time to create an AI', 'uploads/simg/python.png'),
+(8, 'Ruby', 'Make music with Ruby', 'uploads/simg/Ruby.svg'),
+(9, 'SQL', 'Database stuff', 'uploads/simg/sql.png');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `info`
 --
 
 CREATE TABLE `info` (
   `id` int(1) NOT NULL,
-  `bio` longtext NOT NULL
+  `text` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `info`
+--
+
+INSERT INTO `info` (`id`, `text`) VALUES
+(1, '<p>Mijn naam is Niels Segaar en ik ben student bij het Grafisch Lyceum Rotterdam en ik doen de opleiding Mediatechnologie. Pellentesque sit amet orci arcu. Donec maximus lacus nunc, sed sagittis arcu tristique non. Cras pulvinar, libero non mollis malesuada, tellus magna cursus leo, commodo consequat ipsum lacus vel neque. Morbi sagittis congue ante vel aliquam. Hallo ik ben eeen persoon</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://upload.wikimedia.org/wikipedia/commons/2/2f/Glr.jpg\" alt=\"Grafisch Lyceum Rotterdam\" width=\"232\" height=\"215\" /></p>\r\n<p>Morbi finibus elit justo, vel gravida lectus elementum ullamcorper. Quisque dapibus sollicitudin tincidunt. Nam rutrum sem sed arcu tempus sodales. Suspendisse ullamcorper eget mi quis lobortis. Donec condimentum aliquam ipsum, quis accumsan massa placerat in. Suspendisse libero nulla, accumsan sed quam eget, maximus iaculis erat. erat erat. Take me to your x-box</p>');
 
 -- --------------------------------------------------------
 
@@ -67,11 +102,18 @@ CREATE TABLE `subject` (
   `text` longtext NOT NULL,
   `subtext` text NOT NULL,
   `video` varchar(48) NOT NULL,
-  `leerlijn` enum('HTML','JS','CSS','PHP','Ruby','Jquery','Python','C#','SQL') NOT NULL,
+  `leerlijn` varchar(64) NOT NULL,
   `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `uitgelicht` int(1) NOT NULL,
   `image` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `subject`
+--
+
+INSERT INTO `subject` (`id`, `titel`, `text`, `subtext`, `video`, `leerlijn`, `date`, `uitgelicht`, `image`) VALUES
+('02b95889-5448-47e4-8ee1-bff1d5574483', 'PHP is niet PHP', '<p>In dit document ga ik het hebben over halfmoon, wat is halfmoon en waarom is het beter om te gebruiken dan bootstrap. Dat zal ik zelf hier vertelen.</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/07/halfmoon.png?fit=1200%2C600&amp;ssl=1\" alt=\"\" width=\"598\" height=\"299\" /></p>\r\n<p>&nbsp;</p>', '<p>Een bootstrap framework met built-in night mode</p>', 'OK_JCtrrv-c', 'PHP', '2021-03-29 12:04:28', 0, 'uploads/what-is-php-3-1.png');
 
 --
 -- Indexes for dumped tables
@@ -84,10 +126,32 @@ ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexes for table `cat`
+--
+ALTER TABLE `cat`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `info`
+--
+ALTER TABLE `info`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `subject`
 --
 ALTER TABLE `subject`
   ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `cat`
+--
+ALTER TABLE `cat`
+  MODIFY `ID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

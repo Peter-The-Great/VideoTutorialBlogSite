@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"])) {
     exit();
 }
 
-if($stmt = $conn->prepare("SELECT text FROM aboutme WHERE id = 1")) {
+if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
     $stmt->execute();
     $stmt->store_result();
 

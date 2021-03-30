@@ -8,7 +8,7 @@
 				<a class="nav-link text-secondary" href="info.php">Over Mij</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-secondary" href="Profile.php">Profiel</a>
+				<a class="nav-link text-secondary" href="profile.php">Profiel Info</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link text-secondary" href="../php/login/logout.php">Loguit</a>

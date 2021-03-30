@@ -2,12 +2,12 @@
 require("../php/database.php");
 session_start();
 
-if($stmt = $conn->prepare("SELECT `username`, `openname`, `profile`, `email`, `adres`, `phone`, `porto` FROM `users` WHERE id = 1")) {
+if($stmt = $conn->prepare("SELECT `username`,  `email`, `realname`, `profile` FROM `admin` WHERE `ID` = '52086616-c85c-4363-98f0-4dcd698ec356';")) {
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($uname, $open, $prof, $email, $adres, $phone, $porto);
+        $stmt->bind_result($uname, $email, $name,  $prof);
         $stmt->fetch();
         $stmt->close();
     }
@@ -44,19 +44,11 @@ if($stmt = $conn->prepare("SELECT `username`, `openname`, `profile`, `email`, `a
                 </div>
             <div class="form-group">
                 <label for="openname">Echte Naam</label>
-                <input type="text" class="form-control rounded" name="openname" id="openname" value="<?php echo $open; ?>" required>
+                <input type="text" class="form-control rounded" name="openname" id="openname" value="<?php echo $name; ?>" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control rounded" name="email" id="email" value="<?php echo $email; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="adres">Adres</label>
-                <input type="text" class="form-control rounded" name="adres" id="adres" value="<?php echo $adres; ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="phone">Telefoon</label>
-                <input type="text" class="form-control rounded" name="phone" id="phone" value="<?php echo $phone; ?>" required>
             </div>
             <div class="form-group">
                 <label for="foto">Huidige Achtergrond Foto</label><br>
@@ -65,10 +57,6 @@ if($stmt = $conn->prepare("SELECT `username`, `openname`, `profile`, `email`, `a
             <div class="form-group">
                 <label for="foto">Achtergrond Foto</label>
                 <input name="image" class="form-control-file" type="file">
-            </div>
-            <div class="form-group">
-                <label for="port">Portofolio</label>
-                <input type="text" class="form-control rounded" name="port" id="port" value="<?php echo $porto; ?>" required>
             </div>
             <div class="form-group">
                 <input type="submit" name="submit" class="btn btn-dark">
