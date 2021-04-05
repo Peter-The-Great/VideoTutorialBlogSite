@@ -1,6 +1,8 @@
 <?php
 require("php/database.php");
 session_start();
+$sql1 = "SELECT `id`, `titel`, `subtext`, `image` FROM `subject` WHERE `uitgelicht` = 1 LIMIT 2";
+$result1 = $conn->query($sql1);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,24 +21,26 @@ session_start();
     <div class="container">
     <h1 class="display-1 text-center fw-bolder">Vandaag in de Spotlight:</h1>
     <div class="mt-4 mb-5 d-flex justify-content-center">
-    <div class='column me-5'>
-				<article class='card' style='background-image: url("uploads/simg/HTML.png");'>
+    	<?php
+    	if ($result1->num_rows === 0){
+        echo "<h1>Vandaag zijn er geen uitgelichte video's</h1>";
+      }
+    	foreach ($result1 as $item) {
+                $image = $item['image'];
+                echo "
+                <div class='column me-5'>
+                <article class='card' style='background-image: url(";
+                echo $image; 
+                echo "); '>
                     <div class='card-body'>
-                        <h2>HTML5</h2>
-                        <p>Bekijk hier meerdere tutorials van de programmeertaal HTML5.</p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/HTML5'>Lees verder...</a></p>
+                        <h2>".$item['titel']."</h2>
+                        <p>".$item['subtext']."</p>
+                        <p class='read'><a class='stretched-link' href='playlist.php?id=".$item['id']."'>Lees verder...</a></p>
                     </div>
                 </article>
-                </div>    
-                <div class='column'>
-				<article class='card' style='background-image: url("uploads/simg/PHP.svg");'>
-                    <div class='card-body'>
-                        <h2>PHP</h2>
-                        <p>Bekijk hier meerdere tutorials van de programmeertaal PHP.</p>
-                        <p class='read'><a class='stretched-link' href='https://nl.wikipedia.org/wiki/PHP'>Lees verder...</a></p>
-                    </div>
-                </article>
-                </div>
+                </div>";
+            }
+    	?>
     </div>
     <h2 class="fw-bold text-center mb-5">Bekijk hieronder andere programmeertalen:</h2>
     <div class="row mb-5">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 29 mrt 2021 om 14:51
+-- Gegenereerd op: 05 apr 2021 om 11:20
 -- Serverversie: 10.4.14-MariaDB
 -- PHP-versie: 7.4.10
 
@@ -79,8 +79,15 @@ INSERT INTO `cat` (`ID`, `name`, `subtext`, `headimage`) VALUES
 
 CREATE TABLE `info` (
   `id` int(1) NOT NULL,
-  `bio` longtext NOT NULL
+  `text` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `info`
+--
+
+INSERT INTO `info` (`id`, `text`) VALUES
+(1, '<p>Mijn naam is Niels Segaar en ik ben student bij het Grafisch Lyceum Rotterdam en ik doen de opleiding Mediatechnologie. Pellentesque sit amet orci arcu. Donec maximus lacus nunc, sed sagittis arcu tristique non. Cras pulvinar, libero non mollis malesuada, tellus magna cursus leo, commodo consequat ipsum lacus vel neque. Morbi sagittis congue ante vel aliquam. Hallo ik ben eeen persoon</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://upload.wikimedia.org/wikipedia/commons/2/2f/Glr.jpg\" alt=\"Grafisch Lyceum Rotterdam\" width=\"232\" height=\"215\" /></p>\r\n<p>Morbi finibus elit justo, vel gravida lectus elementum ullamcorper. Quisque dapibus sollicitudin tincidunt. Nam rutrum sem sed arcu tempus sodales. Suspendisse ullamcorper eget mi quis lobortis. Donec condimentum aliquam ipsum, quis accumsan massa placerat in. Suspendisse libero nulla, accumsan sed quam eget, maximus iaculis erat. erat erat. Take me to your x-box</p>');
 
 -- --------------------------------------------------------
 
@@ -105,7 +112,8 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`id`, `titel`, `text`, `subtext`, `video`, `leerlijn`, `date`, `uitgelicht`, `image`) VALUES
-('02b95889-5448-47e4-8ee1-bff1d5574483', 'PHP is niet PHP', '<p>In dit document ga ik het hebben over halfmoon, wat is halfmoon en waarom is het beter om te gebruiken dan bootstrap. Dat zal ik zelf hier vertelen.</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/07/halfmoon.png?fit=1200%2C600&amp;ssl=1\" alt=\"\" width=\"598\" height=\"299\" /></p>\r\n<p>&nbsp;</p>', '<p>Een bootstrap framework met built-in night mode</p>', 'OK_JCtrrv-c', 'PHP', '2021-03-29 12:04:28', 0, 'uploads/what-is-php-3-1.png');
+('02b95889-5448-47e4-8ee1-bff1d5574483', 'PHP is niet PHP', '<p>In dit document ga ik het hebben over halfmoon, wat is halfmoon en waarom is het beter om te gebruiken dan bootstrap. Dat zal ik zelf hier vertelen.</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/07/halfmoon.png?fit=1200%2C600&amp;ssl=1\" alt=\"\" width=\"598\" height=\"299\" /></p>\r\n<p>&nbsp;</p>', '<p>Een bootstrap framework met built-in night mode</p>', 'OK_JCtrrv-c', 'PHP', '2021-03-29 12:04:28', 1, 'uploads/what-is-php-3-1.png'),
+('64f8385d-958a-494a-b916-e0a62027ce67', 'PHP is niet PHP', '<p>In dit document ga ik het hebben over halfmoon, wat is halfmoon en waarom is het beter om te gebruiken dan bootstrap. Dat zal ik zelf hier vertelen.</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/07/halfmoon.png?fit=1200%2C600&amp;ssl=1\" alt=\"\" width=\"598\" height=\"299\" /></p>\r\n<p>&nbsp;</p>', '<p>Een bootstrap framework met built-in night mode</p>', 'OK_JCtrrv-c', 'PHP', '2021-03-29 12:04:28', 1, 'uploads/what-is-php-3-1.png');
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -122,6 +130,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `cat`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexen voor tabel `info`
+--
+ALTER TABLE `info`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexen voor tabel `subject`
