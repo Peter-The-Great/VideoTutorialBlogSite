@@ -31,7 +31,7 @@ if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FRO
 <body>
 <?php require("navbar.php"); ?>
 <div class="container mt-2">
-        <form method="POST" action="../php/changeprofile.php">
+        <form method="POST" enctype="multipart/form-data" action="../php/changeprofile.php">
         <div class="form-group">
                 <label for="username">Gebruikersnaam</label>
                 <input type="text" class="form-control rounded" name="username" id="username" value="<?php echo $uname; ?>" required>

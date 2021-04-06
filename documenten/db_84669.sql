@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2021 at 07:12 AM
--- Server version: 10.1.47-MariaDB-0ubuntu0.18.04.1
--- PHP Version: 7.3.27
+-- Gegenereerd op: 06 apr 2021 om 18:03
+-- Serverversie: 10.1.47-MariaDB-0ubuntu0.18.04.1
+-- PHP-versie: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- Tabelstructuur voor tabel `admin`
 --
 
 CREATE TABLE `admin` (
@@ -38,7 +38,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `admin`
+-- Gegevens worden geëxporteerd voor tabel `admin`
 --
 
 INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`, `profile`) VALUES
@@ -47,7 +47,7 @@ INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`, `profile
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cat`
+-- Tabelstructuur voor tabel `cat`
 --
 
 CREATE TABLE `cat` (
@@ -58,7 +58,7 @@ CREATE TABLE `cat` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `cat`
+-- Gegevens worden geëxporteerd voor tabel `cat`
 --
 
 INSERT INTO `cat` (`ID`, `name`, `subtext`, `headimage`) VALUES
@@ -75,7 +75,7 @@ INSERT INTO `cat` (`ID`, `name`, `subtext`, `headimage`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `info`
+-- Tabelstructuur voor tabel `info`
 --
 
 CREATE TABLE `info` (
@@ -84,7 +84,7 @@ CREATE TABLE `info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `info`
+-- Gegevens worden geëxporteerd voor tabel `info`
 --
 
 INSERT INTO `info` (`id`, `text`) VALUES
@@ -93,7 +93,7 @@ INSERT INTO `info` (`id`, `text`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `subject`
+-- Tabelstructuur voor tabel `subject`
 --
 
 CREATE TABLE `subject` (
@@ -109,46 +109,47 @@ CREATE TABLE `subject` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `subject`
+-- Gegevens worden geëxporteerd voor tabel `subject`
 --
 
 INSERT INTO `subject` (`id`, `titel`, `text`, `subtext`, `video`, `leerlijn`, `date`, `uitgelicht`, `image`) VALUES
-('02b95889-5448-47e4-8ee1-bff1d5574483', 'PHP is niet PHP', '<p>In dit document ga ik het hebben over halfmoon, wat is halfmoon en waarom is het beter om te gebruiken dan bootstrap. Dat zal ik zelf hier vertelen.</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/07/halfmoon.png?fit=1200%2C600&amp;ssl=1\" alt=\"\" width=\"598\" height=\"299\" /></p>\r\n<p>&nbsp;</p>', '<p>Een bootstrap framework met built-in night mode</p>', 'OK_JCtrrv-c', 'PHP', '2021-03-29 12:04:28', 0, 'uploads/what-is-php-3-1.png');
+('02b95889-5448-47e4-8ee1-bff1d5574483', 'PHP is niet PHP', '<p>In dit document ga ik het hebben over halfmoon, wat is halfmoon en waarom is het beter om te gebruiken dan bootstrap. Dat zal ik zelf hier vertelen.</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/07/halfmoon.png?fit=1200%2C600&amp;ssl=1\" alt=\"\" width=\"598\" height=\"299\" /></p>\r\n<p>&nbsp;</p>', '<p>Een bootstrap framework met built-in night mode</p>', 'OK_JCtrrv-c', 'PHP', '2021-03-29 12:04:28', 1, 'uploads/what-is-php-3-1.png'),
+('64f8385d-958a-494a-b916-e0a62027ce67', 'PHP is niet PHP', '<p>In dit document ga ik het hebben over halfmoon, wat is halfmoon en waarom is het beter om te gebruiken dan bootstrap. Dat zal ik zelf hier vertelen.</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://i0.wp.com/css-tricks.com/wp-content/uploads/2020/07/halfmoon.png?fit=1200%2C600&amp;ssl=1\" alt=\"\" width=\"598\" height=\"299\" /></p>\r\n<p>&nbsp;</p>', '<p>Een bootstrap framework met built-in night mode</p>', 'OK_JCtrrv-c', 'PHP', '2021-03-29 12:04:28', 1, 'uploads/PHP1.jpg');
 
 --
--- Indexes for dumped tables
+-- Indexen voor geëxporteerde tabellen
 --
 
 --
--- Indexes for table `admin`
+-- Indexen voor tabel `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `cat`
+-- Indexen voor tabel `cat`
 --
 ALTER TABLE `cat`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `info`
+-- Indexen voor tabel `info`
 --
 ALTER TABLE `info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `subject`
+-- Indexen voor tabel `subject`
 --
 ALTER TABLE `subject`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
 --
--- AUTO_INCREMENT for table `cat`
+-- AUTO_INCREMENT voor een tabel `cat`
 --
 ALTER TABLE `cat`
   MODIFY `ID` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;

@@ -14,6 +14,8 @@
 				</li>
 				<?php if(!isset($_SESSION["loggedin"])) {
 				echo "<li class='nav-item'><a class='nav-link text-white' href='admin/'>Login</a></li>";
+				}else{
+					echo "<li class='nav-item'><a class='nav-link text-white' href='admin/dashboard.php'>Dashboard</a></li>";
 				} ?>
 			</ul>
 		<form method="POST" enctype="multipart/form-data" action="search.php" class="d-flex">
