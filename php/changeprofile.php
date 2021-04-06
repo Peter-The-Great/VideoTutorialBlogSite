@@ -6,7 +6,7 @@ if (!isset($_SESSION["loggedin"])) {
 	exit();
 }
 // Update into DATABASE
-if(isset($_POST["username"],$_POST["password"],$_POST["openname"],$_POST["email"],$_POST["Huidige_Afbeelding"], $_POST["port"])){
+if(isset($_POST["username"],$_POST["password"],$_POST["openname"],$_POST["email"],$_POST["Huidige_Afbeelding"])){
     
     $Huidig = $_POST['Huidige_Afbeelding'];
     $Afbeelding = $_FILES['image'];
@@ -18,11 +18,10 @@ if(isset($_POST["username"],$_POST["password"],$_POST["openname"],$_POST["email"
     $Toegestaan = array("image/jpg","image/jpeg", "image/png", "image/gif");
     $sql = "";
     
-    if (empty($Afbeelding) || $Afbeelding['size'] == 0) {
-        $sql = "UPDATE users SET `username`=?, `password`=?, `openname`=?, `email`=?,`adres`=?,`phone`=?, `porto`=? WHERE id=1";
+    if ($Afbeelding['size'] == 0) {
+        $sql = "UPDATE admin SET `username`=?, `password`=?, `realname`=?, `email`=? WHERE id='52086616-c85c-4363-98f0-4dcd698ec356'";
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("sssssss", $_POST["username"], sha1($_POST["password"]), $_POST["openname"], $_POST["email"], $_POST["adres"], $_POST["phone"], $_POST["port"]);
-    
+        $stmt->bind_param("ssss", $_POST["username"], sha1($_POST["password"]), $_POST["openname"], $_POST["email"]);
         $stmt->execute();
         $stmt->close();
         header("Location: ../admin/dashboard.php");
@@ -38,9 +37,9 @@ elseif ($Afbeeldingnaam != $Huidig && in_array($type, $Toegestaan)) {
     $fileExt = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
     $new_str = $map . uniqid() . "_" . uniqid() . "." . $fileExt;
     move_uploaded_file($Tijdelijk, "../".$new_str);
-    $sql = "UPDATE users SET `username`=?, `password`=?, `openname`=?, email=?, `adres`=?,`phone`=?, `profile`=?, `phone`=?, `porto`=? WHERE id=1";
+    $sql = "UPDATE admin SET `username`=?, `password`=?, `realname`=?, email=?, `profile`=? WHERE id='52086616-c85c-4363-98f0-4dcd698ec356'";
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("ssssssss", $_POST["username"], sha1($_POST["password"]), $_POST["openname"], $_POST["email"], $_POST["adres"], $new_str, $_POST["phone"], $_POST["port"]);
+        $stmt->bind_param("sssss", $_POST["username"], sha1($_POST["password"]), $_POST["openname"], $_POST["email"], $new_str);
         $stmt->execute();
         $stmt->close();
         header("Location: ../admin/dashboard.php");

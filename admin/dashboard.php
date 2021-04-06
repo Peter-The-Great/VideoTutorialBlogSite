@@ -22,7 +22,7 @@ $id = $_SESSION['id'];
 <body>
 <?php require("navbar.php"); ?>
 <div class="container">
-	<?php echo '<a href="createpost.php" class="btn btn-success mt-5"><i class="fas fa-user-plus"></i> Post Aanmaken</a>' ?>
+	<?php echo '<a href="createpost.php" class="btn btn-primary mt-5"><i class="fas fa-user-plus"></i> Lesstof Aanmaken</a>' ?>
 	<div class="center-div">
 		<table class="table mt-2">
 			<thead class="thead-dark">
@@ -38,7 +38,7 @@ $id = $_SESSION['id'];
 
 				<?php
 				foreach ($result as $item) {
-					echo "<td>" . $item["titel"] . "</td><td>" .  $item["date"] . "</td></td><td><a href='../post.php?id=" . $item['id'] . "' class='btn btn-info btn-lg'><i class='fas fa-eye'></i></a></td><td><a href='changepost.php?id=" . $item['id'] . "' class='btn btn-warning btn-lg'><i class='fas fa-user-edit'></i></a></td><td><button type='button' data-bs-toggle='modal' data-bs-target='#post". $item['id'] ."' class='btn btn-danger btn-lg'><i class='fas fa-trash-alt'></i></button></td></tr>
+					echo "<td>" . $item["titel"] . "</td><td>" .  $item["date"] . "</td></td><td><a href='../video.php?id=" . $item['id'] . "' class='btn btn-info btn-lg'><i class='fas fa-eye'></i></a></td><td><a href='changepost.php?id=" . $item['id'] . "' class='btn btn-warning btn-lg'><i class='fas fa-user-edit'></i></a></td><td><button type='button' data-bs-toggle='modal' data-bs-target='#post". $item['id'] ."' class='btn btn-danger btn-lg'><i class='fas fa-trash-alt'></i></button></td></tr>
 					<div class='modal fade' id='post". $item['id'] ."' data-bs-backdrop='static' data-bs-keyboard='false' tabindex='-1' aria-labelledby='postlabel". $item['id'] ."' aria-hidden='true'>
                         <div class='modal-dialog'>
                           <div class='modal-content'>

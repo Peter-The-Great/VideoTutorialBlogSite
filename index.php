@@ -10,6 +10,8 @@ $result1 = $conn->query($sql1);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free Web tutorials">
+    <meta name="description" content="Mathijs Clasener">
     <?php
     require("components/style.php");
     ?>
@@ -35,7 +37,7 @@ $result1 = $conn->query($sql1);
                     <div class='card-body'>
                         <h2>".$item['titel']."</h2>
                         <p>".$item['subtext']."</p>
-                        <p class='read'><a class='stretched-link' href='playlist.php?id=".$item['id']."'>Lees verder...</a></p>
+                        <p class='read'><a class='stretched-link' href='video.php?id=".$item['id']."'>Lees verder...</a></p>
                     </div>
                 </article>
                 </div>";

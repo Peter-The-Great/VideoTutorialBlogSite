@@ -57,7 +57,7 @@ if($stmt = $conn->prepare("SELECT title,subtext,text,headimage FROM projects WHE
     </script>
     
 
-    <title><?php echo $open; ?> - Verander post</title>
+    <title><?php echo $open; ?> - Verander lesstof</title>
 </head>
 
 <body>

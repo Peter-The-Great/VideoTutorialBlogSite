@@ -2,7 +2,7 @@
 require("../php/database.php");
 session_start();
 
-if($stmt = $conn->prepare("SELECT `username`,  `email`, `realname`, `profile` FROM `admin` WHERE `ID` = '52086616-c85c-4363-98f0-4dcd698ec356';")) {
+if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FROM `admin` WHERE `ID` = '52086616-c85c-4363-98f0-4dcd698ec356';")) {
     $stmt->execute();
     $stmt->store_result();
 
