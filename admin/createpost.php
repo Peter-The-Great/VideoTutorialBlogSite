@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"])) {
     header("Location: ../index.php");
     exit();
 }
-$sql = "SELECT name FROM cat;";
+$sql = "SELECT id, name FROM cat;";
 $result = $conn->query($sql);
 ?>
 <!doctype html>
@@ -52,11 +52,17 @@ $result = $conn->query($sql);
 
 <body>
 <?php require("navbar.php"); ?>
+<!-- Hier hebben we het formulier gemaakt voor het toevoegen van een post -->
+<!-- Bij addpost staat de query voor het toevoegen dat we bij action hebben gezet. -->
     <div class="container mt-2">
         <form method="POST" enctype="multipart/form-data" action="../php/addpost.php">
             <div class="form-group">
                 <label for="titel">Titel</label>
                 <input name="title" id="titel" class="form-control" placeholder="Titel" type="text" required>
+            </div>
+            <div class="form-group">
+                <label for="video">Video (Youtube Link)</label>
+                <input name="video" id="video" class="form-control" placeholder="https://youtube.com/watch?v=swWJjuBDKDg" type="text" required>
             </div>
             <div class="form-group">
                 <label for="subtext">Sub Tekst</label>
@@ -75,17 +81,33 @@ $result = $conn->query($sql);
                 <select required name="leer">
                 <option selected disabled>-- selecteer leerlijn --</option>
                 <?php
+                //Hier loopen we door alle leerlijnen die dan vervolgens worden laten zien
                 foreach ($result as $item) {
-                    echo "<option value='".$item['name']."'></option>";
-                    echo $item['name'];
+                    echo "<option value='".$item['id']."'>". $item['name'] ."</option>";
                 }
                 ?>
                 </select>
             </div>
             <div class="form-group">
+            <label for="uit">Uitgelicht</label>
+            <div class="form-check">
+                <input class="form-check-input" checked type="radio" name="uit" id="nee">
+                <label class="form-check-label" for="nee">
+                Nee
+                </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="uit" id="ja">
+            <label class="form-check-label" for="ja">
+            Ja
+            </label>
+            </div>
+        </div>
+            <div class="form-group">
                 <input type="submit" name="submit" class="btn btn-dark">
             </div>
             <?php
+            //Wanneer de post niet goed is uitgevoerd krijg je een error
                 if (isset($_GET['error=mysql'])) {
                     echo "<span style='color: rgb(0,185,255);'>The post wasn't send correctly.</span>";
                 }

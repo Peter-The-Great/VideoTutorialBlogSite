@@ -9,7 +9,7 @@ if (!isset($_SESSION["loggedin"])) {
 
 // Insert into DATABASE
 if(isset($_POST["text"])){
-    $sql = "UPDATE aboutme SET text=? WHERE id=1";
+    $sql = "UPDATE info SET text=? WHERE id=1";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param(
             "s",
@@ -18,12 +18,12 @@ if(isset($_POST["text"])){
     
         $stmt->execute();
         $stmt->close();
-        header("Location: ../biografie.php");
+        header("Location: ../info.php");
     } 
     else {
-        header('Location: ../admin/biografie.php?error=mysql');
+        header('Location: ../admin/changebiografie.php?error=mysql');
     } 
 }else {
-    header('Location: ../admin/biografie.php?error=fields');
+    header('Location: ../admin/changebiografie.php?error=fields');
 }
 ?>

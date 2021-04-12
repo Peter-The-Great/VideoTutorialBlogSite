@@ -30,6 +30,7 @@ if(isset($_POST["username"],$_POST["password"],$_POST["openname"],$_POST["email"
         header('Location: ../admin/profile.php?error=mysql');
     } 
 }
+//hier wordt gekeken naar de huidige afbeeldingen en of het type van de afbeelding is toegestaan
 elseif ($Afbeeldingnaam != $Huidig && in_array($type, $Toegestaan)) {
     unlink($unlink.$Huidig);
     $afbeelding = $map.$Afbeeldingnaam;
@@ -37,6 +38,7 @@ elseif ($Afbeeldingnaam != $Huidig && in_array($type, $Toegestaan)) {
     $fileExt = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
     $new_str = $map . uniqid() . "_" . uniqid() . "." . $fileExt;
     move_uploaded_file($Tijdelijk, "../".$new_str);
+    //Hier wordt de update query gemaakt
     $sql = "UPDATE admin SET `username`=?, `password`=?, `realname`=?, email=?, `profile`=? WHERE id='52086616-c85c-4363-98f0-4dcd698ec356'";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param("sssss", $_POST["username"], sha1($_POST["password"]), $_POST["openname"], $_POST["email"], $new_str);

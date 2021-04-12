@@ -42,9 +42,6 @@ if ($stmt = $conn->prepare("SELECT titel,text, image, video, leerlijn FROM subje
 			<iframe width="560" height="315" <?php echo "src='https://www.youtube.com/embed/". $video ."'";  ?> title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				<br><br>
 			<a class="maxw mb-2" <?php echo "href='playlist.php?id=". $leerlijn ."'"; ?>>← Terug naar lesstof</a>
-			<?php if(isset($_SESSION["loggedin"])) {
-				echo "<a class='maxw mb-3' href='admin/dashboard.php'>← Terug naar dashboard</a>";
-				} ?>
 		</div>
 	</section>
 	<?php

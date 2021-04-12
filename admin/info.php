@@ -29,7 +29,7 @@ if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
     <script src="https://cdn.tiny.cloud/1/swq7hpikkqwjjze9ad6mykwgy37w7e1mlvbbslqdqokoedyw/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     
 
-    <title><?php echo $open; ?> - Biografie</title>
+    <title><?php echo $open; ?> - Info Over Website</title>
 </head>
 
 <body>
@@ -37,7 +37,7 @@ if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
     <div class="container mt-2">
         <form method="POST" action="../php/changebiografie.php">
             <div class="form-group">
-                <label for="text">Biografie Tekst</label>
+                <label for="text">Info Tekst</label>
                 <textarea name="text" id="text"><?php echo $text;?></textarea required>
             </div>
             <div class="form-group">

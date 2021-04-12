@@ -6,13 +6,13 @@ if (!isset($_SESSION["loggedin"])) {
     exit();
 }
 
-if($stmt = $conn->prepare("SELECT title,subtext,text,headimage FROM projects WHERE id = ?")) {
+if($stmt = $conn->prepare("SELECT titel,subtext,text,image,video,leerlijn,uitgelicht FROM subject WHERE id = ?")) {
     $stmt->bind_param("s", $_GET["id"]);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($title, $subtext, $text, $image);
+        $stmt->bind_result($title, $subtext, $text, $image, $video, $leerlijn, $uitgelicht);
         $stmt->fetch();
     }
 }
@@ -67,6 +67,10 @@ if($stmt = $conn->prepare("SELECT title,subtext,text,headimage FROM projects WHE
             <div class="form-group">
                 <label for="titel">Titel</label>
                 <input name="title" id="titel" class="form-control" placeholder="Titel" type="text" value="<?php echo $title;?>" required>
+            </div>
+            <div class="form-group">
+                <label for="video">Video</label>
+                <input name="video" id="video" class="form-control" placeholder="video" type="text" value="https://www.youtube.com/watch?v=<?php echo $video;?>" required>
             </div>
             <div class="form-group">
                 <label for="subtext">Sub Tekst</label>

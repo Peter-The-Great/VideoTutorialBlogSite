@@ -1,7 +1,7 @@
 <?php
 require("php/database.php");
 session_start();
-$sql = "SELECT name, subtext, headimage FROM cat;";
+$sql = "SELECT id, name, subtext, headimage FROM cat;";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@ $result = $conn->query($sql);
     <?php 
     require("components/style.php");
     ?>
-    <title><?php echo $open; ?> - Playlists - <?php echo "something";?></title>
+    <title><?php echo $open; ?> - Playlist Lijst</title>
 </head>
 <body>
 	<?php require("components/navbar.php"); ?>
@@ -33,7 +33,7 @@ $result = $conn->query($sql);
                     <div class='card-body'>
                         <h2>".$item['name']."</h2>
                         <p>".$item['subtext']."</p>
-                        <p class='read'><a class='stretched-link' href='playlist.php?id=".$item['name']."'>Lees verder...</a></p>
+                        <p class='read'><a class='stretched-link' href='playlist.php?id=".$item['id']."'>Lees verder...</a></p>
                     </div>
                 </article>
                 </div>";

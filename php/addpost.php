@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 require('database.php');
 if (!isset($_SESSION["loggedin"])) {
@@ -7,7 +6,7 @@ if (!isset($_SESSION["loggedin"])) {
 	exit();
 }
 // Insert into DATABASE
-if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_FILES['image'])){
+if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_POST['leer'], $_FILES['image'], $_POST['uit'], $_POST['video'])){
 $image = $_FILES['image'];
 $Tijdelijk = $image['tmp_name'];
 $imagenaam = $image['name'];
@@ -15,6 +14,9 @@ $type = $image['type'];
 $map = 'uploads/';
 $Toegestaan = array("image/jpg","image/jpeg","image/png","image/gif");
 $titel = strip_tags(htmlspecialchars($_POST['title']));
+$videostring = str_replace('https://www.youtube.com/watch?v=', '', $_POST['video']);
+$videostring1 = explode('&', $videostring);
+$vidstring = $videostring1[0];
 //function to give a a unique id
 function uuidv4(){
 	$data = openssl_random_pseudo_bytes(16);
@@ -35,8 +37,8 @@ if (in_array($type,$Toegestaan)){
     header("Location: createpost.php?error=nietgeupload");
 }
 $randomid = uuidv4();
-    if ($stmt = $conn->prepare("INSERT INTO subject (id, title, subtext, text, image, video, leerlijn, uitgelicht) values (?, ?, ?, ?, ?)")) {
-        $stmt->bind_param("sssss", $randomid, $titel, $_POST['subtext'], $_POST['text'], $new_str);
+    if ($stmt = $conn->prepare("INSERT INTO subject (id, titel, subtext, text, image, video, leerlijn, uitgelicht) values (?, ?, ?, ?, ?, ?, ?, ?)")) {
+        $stmt->bind_param("ssssssss", $randomid, $titel, $_POST['subtext'], $_POST['text'], $new_str, $vidstring, $_POST['leer'], $_POST['uit']);
         $stmt->execute();
         header("Location: ../admin/dashboard.php");
     } 
