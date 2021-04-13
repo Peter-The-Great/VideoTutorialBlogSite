@@ -19,7 +19,7 @@ $result = $conn->query($sql);
 	<?php require("components/navbar.php"); ?>
 	<main id="article">
 	<div class="container">
-    <div class="row mb-5">
+    <div class="row mb-5 mt-3">
     <?php
     if ($result->num_rows === 0){
         echo "<p>De video waar jij naar zocht kon niet worden gevodnen.</p>";
@@ -34,7 +34,7 @@ $result = $conn->query($sql);
                     <div class='card-body'>
                         <h2>".$item['titel']."</h2>
                         <p>".$item['subtext']."</p>
-                        <p class='read'><a class='stretched-link' href='playlist.php?id=".$item['id']."'>Lees verder...</a></p>
+                        <p class='read'><a class='stretched-link' href='video.php?id=".$item['id']."'>Lees verder...</a></p>
                     </div>
                 </article>
                 </div>";

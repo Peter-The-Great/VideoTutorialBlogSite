@@ -22,7 +22,7 @@ if(isset($_SESSION["loggedin"])) {
             <!-- Shadow, Center in the middle of screen -->
             <!-- Logo-->
             <center><img class="img-fluid rounded-circle" src="../<?php echo $profilepic ?>"></center>
-            <h3 id="Inloggen"></h3><h4 class="card-title mb-4 mt-1"><?php echo $open; ?></h4>
+            <h5 id="Inloggen"></h5><h4 class="card-title mb-4 mt-1"><?php echo $open; ?></h4>
             <!-- Forum Itself -->
             <form method="POST" action="../php/login/authenticate.php">
                 <div class="form-group">
