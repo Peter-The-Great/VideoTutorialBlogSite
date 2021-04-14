@@ -6,14 +6,27 @@ if (!isset($_SESSION["loggedin"])) {
     exit();
 }
 
-if($stmt = $conn->prepare("SELECT titel,subtext,text,image,video,leerlijn,uitgelicht FROM subject WHERE id = ?")) {
+$sql = "SELECT id, name FROM cat;";
+$result = $conn->query($sql);
+
+if($stmt = $conn->prepare("SELECT titel,subtext,text,image,video,leerlijn FROM subject WHERE id = ?")) {
     $stmt->bind_param("s", $_GET["id"]);
     $stmt->execute();
     $stmt->store_result();
 
     if ($stmt->num_rows > 0) {
-        $stmt->bind_result($title, $subtext, $text, $image, $video, $leerlijn, $uitgelicht);
+        $stmt->bind_result($title, $subtext, $text, $image, $video, $leerlijn);
         $stmt->fetch();
+    }
+}
+if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
+    $stmt2->bind_param("s", $leerlijn);
+    $stmt2->execute();
+    $stmt2->store_result();
+
+    if ($stmt2->num_rows > 0) {
+        $stmt2->bind_result($leerlijnnaam);
+        $stmt2->fetch();
     }
 }
 ?>
@@ -88,6 +101,33 @@ if($stmt = $conn->prepare("SELECT titel,subtext,text,image,video,leerlijn,uitgel
                 <label for="foto">Achtergrond Foto</label>
                 <input name="image" type="file">
             </div>
+            <div class="form-group">
+                <label for="leerlijn">Leerlijn</label>
+                <select required name="leer">
+                <?php
+                echo "<option selected value'". $leerlijn ."' >". $leerlijnnaam ."</option>";
+                //Hier loopen we door alle leerlijnen die dan vervolgens worden laten zien
+                foreach ($result as $item) {
+                    echo "<option value='".$item['id']."'>". $item['name'] ."</option>";
+                }
+                ?>
+                </select>
+            </div>
+            <div class="form-group">
+            <label for="uit">Uitgelicht</label>
+            <div class="form-check">
+                <input class="form-check-input" checked type="radio" name="uit" id="nee">
+                <label class="form-check-label" for="nee">
+                Nee
+                </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="uit" id="ja">
+            <label class="form-check-label" for="ja">
+            Ja
+            </label>
+            </div>
+        </div>
             <div class="form-group">
                 <input type="submit" name="submit" class="btn btn-dark">
             </div>

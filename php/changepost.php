@@ -25,7 +25,7 @@ if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_POST['Huidige_Afb
     if (empty($Afbeelding) || $Afbeelding['size'] == 0) {
     $sql = "UPDATE subject SET titel=?, subtext=?, text=?, video=?, leerlijn=?, uitgelicht=? WHERE id=?";
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("sssssss", $_POST['title'], $_POST['subtext'], $_POST['text'], $vidstring, $_POST['leerlijn'], $_POST['uitlicht'], $_GET['id']);
+        $stmt->bind_param("sssssss", $_POST['title'], $_POST['subtext'], $_POST['text'], $vidstring, $_POST['leer'], $_POST['uit'], $_GET['id']);
         $stmt->execute();
         //$stmt->close();
         header("Location: ../admin/dashboard.php");
@@ -43,7 +43,7 @@ elseif ($Afbeeldingnaam != $Huidig && in_array($type, $Toegestaan)) {
         move_uploaded_file($Tijdelijk, "../".$new_str);
         $sql = "UPDATE subject SET titel=?, subtext=?, text=?, image=?, video=?, leerlijn=?, uitgelicht=? WHERE id=?";
         if ($stmt = $conn->prepare($sql)) {
-            $stmt->bind_param("ssssssss", $_POST['title'], $_POST['subtext'], $_POST['text'], $new_str, $vidstring, $_POST['leerlijn'], $_POST['uitlicht'], $_GET['id']);
+            $stmt->bind_param("ssssssss", $_POST['title'], $_POST['subtext'], $_POST['text'], $new_str, $vidstring, $_POST['leer'], $_POST['uit'], $_GET['id']);
             $stmt->execute();
             //$stmt->close();
             header("Location: ../admin/dashboard.php");
