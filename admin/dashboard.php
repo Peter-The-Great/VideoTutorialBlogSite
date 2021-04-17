@@ -98,19 +98,19 @@ $id = $_SESSION['id'];
 			<?php
 			//Hier kunnen we leerlijnen verwijderen.
 			foreach ($result2 as $item2) {
-				echo "<td>" . $item2["name"] . "</td><td><a href='deleteleer.php?id=". $item2['id'] ."'><button type='button' class='btn btn-danger btn-lg'><i class='fas fa-trash-alt'></i></button></a></td><tr>";
+				echo "<td>" . $item2["name"] . "</td><td><a href='../php/deleteleer.php?id=". $item2['id'] ."'><button type='button' class='btn btn-danger btn-lg'><i class='fas fa-trash-alt'></i></button></a></td><tr>";
 			}
 			?>
 			</tbody>
 			</table>
 			<form method="POST" enctype="multipart/form-data" action="../php/addleer.php">
 			<div class="form-group">
-                <label for="naam">Titel</label>
+                <label for="naam">Leerlijn Naam</label>
                 <input name="name" id="name" class="form-control" placeholder="Naam Leerlijn" type="text" required>
             </div>
 			<div class="form-group">
-                <label for="subtext">Subtext</label>
-                <textarea name="subtext" id="subtext" class="form-control" placeholder="Omschrijving" type="text" required></textarea>
+                <label for="subtext">Omschrijving</label>
+                <textarea name="subtext" id="subtext"></textarea required>
             </div>
 			<div class="form-group">
                 <label for="image">Leerlijn Profiel</label>

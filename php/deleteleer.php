@@ -9,8 +9,8 @@ if (!isset($_SESSION["loggedin"])) {
 //Hier moet een get die de id uit de url gaat halen
 //basic delete function and deletion of an image with the part itself
 $id = $_GET["id"];
-$unlink = "../uploads/simg/";
-$stmt = $conn->prepare("SELECT `headimage` FROM cat WHERE id = ?");
+$unlink = "../";
+$stmt = $conn->prepare("SELECT `headimage` FROM cat WHERE `ID` = ?");
 $stmt->bind_param("s", $id);
 $stmt->execute();
 $stmt->store_result();
@@ -19,7 +19,7 @@ $stmt->fetch();
 unlink($unlink.$Huidig);
 
 if(isset($id)){
-    $stmt = $conn->prepare("DELETE FROM cat WHERE id = ?");
+    $stmt = $conn->prepare("DELETE FROM cat WHERE `ID` = ?");
     $stmt->bind_param("s", $id);
     $stmt->execute();
 }
