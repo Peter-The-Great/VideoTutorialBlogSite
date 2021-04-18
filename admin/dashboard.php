@@ -29,7 +29,7 @@ $id = $_SESSION['id'];
             toolbar: 'undo redo | formatselect | ' +
                 'bold italic ' +
                 '| link unlink | bullist numlist outdent indent | ' +
-                'removeformat',
+                'removeformat' + '| help',
             content_css: '//www.tiny.cloud/css/codepen.min.css'
         });
     </script>
