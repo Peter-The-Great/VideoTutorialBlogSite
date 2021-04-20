@@ -14,9 +14,13 @@ $type = $image['type'];
 $map = 'uploads/';
 $Toegestaan = array("image/jpg","image/jpeg","image/png","image/gif");
 $titel = strip_tags(htmlspecialchars($_POST['title']));
+
+//Get the video string
 $videostring = str_replace('https://www.youtube.com/watch?v=', '', $_POST['video']);
 $videostring1 = explode('&', $videostring);
 $vidstring = $videostring1[0];
+
+
 //function to give a a unique id
 function uuidv4(){
 	$data = openssl_random_pseudo_bytes(16);
@@ -26,6 +30,7 @@ function uuidv4(){
 
 	return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
+
 //here we are making sure that the image is moved to its right location.
 $afbeelding = $map.$imagenaam;
 $new_str = str_replace(' ', '', $afbeelding);

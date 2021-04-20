@@ -82,7 +82,7 @@ $id = $_SESSION['id'];
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title h4" id="leerlijnenmodalLabel">Full screen modal</h5>
+        <h5 class="modal-title h4" id="leerlijnenmodalLabel">Leerlijnen Toevoegen of Verwijderen</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
