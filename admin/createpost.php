@@ -139,13 +139,13 @@ $result = $conn->query($sql);
             <div class="form-group">
             <label for="uit">Uitgelicht</label>
             <div class="form-check">
-                <input class="form-check-input" checked type="radio" name="uit" id="nee">
+                <input class="form-check-input" checked type="radio" name="uit" value="0" id="nee">
                 <label class="form-check-label" for="nee">
                 Nee
                 </label>
             </div>
             <div class="form-check">
-            <input class="form-check-input" type="radio" name="uit" id="ja">
+            <input class="form-check-input" type="radio" name="uit" value="1" id="ja">
             <label class="form-check-label" for="ja">
             Ja
             </label>
