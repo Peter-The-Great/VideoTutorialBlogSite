@@ -19,7 +19,7 @@
 				<a class="nav-link text-white" href="../php/login/logout.php">Loguit</a>
 			</li>
 		</ul>
-		<form method="POST" enctype="multipart/form-data" action="../search.php" class="d-flex">
+		<form method="POST" enctype="multipart/form-data" action="search.php" class="d-flex">
         <input class="form-control me-2" name="search" id="search" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light" type="submit">Search</button>
 		</form>
