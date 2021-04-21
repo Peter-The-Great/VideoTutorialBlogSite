@@ -12,11 +12,14 @@
 				<li class="nav-item">
 					<a class="nav-link text-white" href="playlists.php">Playlists</a>
 				</li>
-				<?php if(!isset($_SESSION["loggedin"])) {
-				echo "<li class='nav-item'><a class='nav-link text-white' href='admin/'>Login</a></li>";
-				}else{
-					echo "<li class='nav-item'><a class='nav-link text-white' href='admin/dashboard.php'>Dashboard</a></li>";
-				} ?>
+				<li class="nav-item">
+					<a class="nav-link text-white" href="info.php">Info over Website</a>
+				</li>
+				<?php if(isset($_SESSION["loggedin"])) {
+				echo "<li class='nav-item'><a class='nav-link text-white' href='admin/dashboard.php'>Dashboard</a></li>";
+				}/*else{
+					echo "<li class='nav-item'><a class='nav-link text-white' href='admin/'>Login</a></li>";
+				}*/?>
 			</ul>
 		<form method="POST" enctype="multipart/form-data" action="search.php" class="d-flex">
           <input class="form-control me-2" name="search" id="search" type="search" placeholder="Search" aria-label="Search">

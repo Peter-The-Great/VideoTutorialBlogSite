@@ -1,7 +1,7 @@
 <?php
 require("php/database.php");
 session_start();
-$sql1 = "SELECT `id`, `titel`, `subtext`, `image` FROM `subject` WHERE `uitgelicht` = 1 LIMIT 2";
+$sql1 = "SELECT `id`, `titel`, `subtext`, `image` FROM `subject` WHERE `uitgelicht` = 1 ORDER BY date LIMIT 2";
 $result1 = $conn->query($sql1);
 $sql2 = "SELECT id, name, subtext, headimage FROM cat LIMIT 6;";
 $result2 = $conn->query($sql2);

@@ -166,13 +166,13 @@ if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
             <div class="form-group">
             <label for="uit">Uitgelicht</label>
             <div class="form-check">
-                <input class="form-check-input" checked type="radio" name="uit" id="nee">
+                <input class="form-check-input" checked type="radio" value="0" name="uit" id="nee">
                 <label class="form-check-label" for="nee">
                 Nee
                 </label>
             </div>
             <div class="form-check">
-            <input class="form-check-input" type="radio" name="uit" id="ja">
+            <input class="form-check-input" type="radio" value="1" name="uit" id="ja">
             <label class="form-check-label" for="ja">
             Ja
             </label>

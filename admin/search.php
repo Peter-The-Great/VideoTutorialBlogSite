@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
-$sql = "SELECT id,titel,date FROM subject ORDER BY date DESC;";
+$sql = "SELECT id,titel,date FROM subject WHERE `titel` LIKE '%". $_POST['search'] ."%' ORDER BY date DESC;";
 $result = $conn->query($sql);
 $sql2 = "SELECT id,name FROM cat;";
 $result2 = $conn->query($sql2);

@@ -7,8 +7,7 @@ if (!isset($_SESSION["loggedin"])) {
 }
 
 // Insert into DATABASE
-if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_POST['Huidige_Afbeelding'])){
-    
+if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_POST['Huidige_Afbeelding'], $_POST['uit'])){
     $Huidig = $_POST['Huidige_Afbeelding'];
     $Afbeelding = $_FILES['image'];
     $Tijdelijk = $Afbeelding['tmp_name'];
