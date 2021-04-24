@@ -1,31 +1,12 @@
 <?php
     session_start();
     require("../database.php");
-    if(!isset($_POST["username"], $_POST["password"], $_POST["g-recaptcha-response"]) ) {
+    if(!isset($_POST["username"], $_POST["password"]) ) {
         session_destroy();
         header("Location: ../../admin/index.php?error=veld");
         return false;
     }
-$response = $_POST["g-recaptcha-response"];
 
-$url = 'https://www.google.com/recaptcha/api/siteverify';
-$data = array(
-    'secret' => '6Le3GeIZAAAAAOnO5JwQ4pnv0iAYtsUuxo2iYsuD',
-    'response' => $response
-);
-$options = array(
-    'http' => array (
-        'method' => 'POST',
-        'content' => http_build_query($data)
-    )
-);
-$context  = stream_context_create($options);
-$verify = file_get_contents($url, false, $context);
-$captcha_success=json_decode($verify);
-
-if ($captcha_success->success==false) {
-    header("Location: ../../admin/index.php?catpcha=false");
-} else if ($captcha_success->success==true) {
 //here we are making a prepared statement so that we can use it to find our user.
     if($stmt = $conn->prepare("SELECT id,username,password FROM admin WHERE username = ?")) {
         $stmt->bind_param("s", $_POST["username"]);
@@ -57,5 +38,4 @@ if ($captcha_success->success==false) {
         }
         $stmt->close();
     }
-}
 ?>

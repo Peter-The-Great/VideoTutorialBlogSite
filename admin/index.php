@@ -37,9 +37,6 @@ if(isset($_SESSION["loggedin"])) {
                     </button>
                 </div>
                 <div class="form-group">
-                <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le3GeIZAAAAAGUCdhhsn-8ML2jU7CPQKWceHLwc"></div><br>
-                </div>
-                <div class="form-group">
                     <button id="submit" type="submit" class="btn btn-dark btn-block" name="Inloggen">Inloggen</button>
                 </div>
                 <?php
