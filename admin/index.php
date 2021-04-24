@@ -13,6 +13,7 @@ if(isset($_SESSION["loggedin"])) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php require("style.php"); ?>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/login.css">
     <title>Login - <?php echo $open ?></title>
 </head>
@@ -34,6 +35,9 @@ if(isset($_SESSION["loggedin"])) {
                     <input name="password" id="password" lenght="60" class="form-control rounded" placeholder="******" type="password">
                     <button id="showitbtn" class="btn" type="button"><i id="eyes" class="fas fa-eye"></i>
                     </button>
+                </div>
+                <div class="form-group">
+                <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le3GeIZAAAAAGUCdhhsn-8ML2jU7CPQKWceHLwc"></div><br>
                 </div>
                 <div class="form-group">
                     <button id="submit" type="submit" class="btn btn-dark btn-block" name="Inloggen">Inloggen</button>
