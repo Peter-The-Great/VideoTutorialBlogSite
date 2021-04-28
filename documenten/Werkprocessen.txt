@@ -1,5 +1,5 @@
 Pjotr: Stelt de opdracht vast, 
-Optimatliseert het product, 
+Optimaliseert het product, 
 test het product, 
 levert het product op,
 Realiseert onderdelen van een product
