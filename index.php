@@ -58,7 +58,7 @@ $result2 = $conn->query($sql2);
           <article class='card' style='background-image: url(". $image1 ."); '>";
           echo "<div class='card-body'>
           <h2>".$item2['name']."</h2>
-          <p>".$item['subtext']."</p>
+          <p>".$item2['subtext']."</p>
           <p class='read'><a class='stretched-link' href='playlist.php?id=".$item2['id']."'>Lees verder...</a></p>
       </div>
       </article>
