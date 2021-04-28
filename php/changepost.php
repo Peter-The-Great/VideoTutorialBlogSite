@@ -5,7 +5,10 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
-
+if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
+        echo "Wrong Token";
+        header("Location: ../admin/changepost.php?error=token");
+}
 // Insert into DATABASE
 if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_POST['Huidige_Afbeelding'], $_POST['uit'])){
     $Huidig = $_POST['Huidige_Afbeelding'];

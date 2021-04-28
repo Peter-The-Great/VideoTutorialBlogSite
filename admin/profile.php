@@ -1,7 +1,8 @@
 <?php
 require("../php/database.php");
 session_start();
-
+$token = bin2hex(openssl_random_pseudo_bytes(32));
+$_SESSION['token'] =  $token;
 if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FROM `admin` WHERE `ID` = '52086616-c85c-4363-98f0-4dcd698ec356';")) {
     $stmt->execute();
     $stmt->store_result();
@@ -32,6 +33,7 @@ if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FRO
 <?php require("navbar.php"); ?>
 <div class="container mt-2">
         <form method="POST" enctype="multipart/form-data" action="../php/changeprofile.php">
+        <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
         <div class="form-group">
                 <label for="username">Gebruikersnaam</label>
                 <input type="text" class="form-control rounded" name="username" id="username" value="<?php echo $uname; ?>" required>

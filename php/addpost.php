@@ -5,6 +5,10 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
+if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
+        echo "Wrong Token";
+        header("Location: ../admin/createpost.php?error=token");
+}
 // Insert into DATABASE
 if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_POST['leer'], $_FILES['image'], $_POST['uit'], $_POST['video'])){
 $image = $_FILES['image'];

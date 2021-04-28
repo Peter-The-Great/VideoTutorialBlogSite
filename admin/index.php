@@ -4,7 +4,9 @@ session_start();
 if(isset($_SESSION["loggedin"])) {
     header("Location: dashboard.php");
 }
-
+$_SESSION['ip'] = $_SERVER['REMOTE_ADDR'];
+$token = bin2hex(openssl_random_pseudo_bytes(32));
+$_SESSION['token'] =  $token;
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,6 +28,7 @@ if(isset($_SESSION["loggedin"])) {
             <h5 id="Inloggen"></h5><h4 class="card-title mb-4 mt-1"><?php echo $open; ?></h4>
             <!-- Forum Itself -->
             <form method="POST" action="../php/login/authenticate.php">
+                <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
                 <div class="form-group">
                     <label>Gebruikersnaam</label>
                     <input name="username" id="username" lenght="60" class="form-control" placeholder="Gebruikersnaam" type="username">
@@ -35,6 +38,9 @@ if(isset($_SESSION["loggedin"])) {
                     <input name="password" id="password" lenght="60" class="form-control rounded" placeholder="******" type="password">
                     <button id="showitbtn" class="btn" type="button"><i id="eyes" class="fas fa-eye"></i>
                     </button>
+                </div>
+                <div class="form-group">
+                <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le3GeIZAAAAAGUCdhhsn-8ML2jU7CPQKWceHLwc"></div><br>
                 </div>
                 <div class="form-group">
                     <button id="submit" type="submit" class="btn btn-dark btn-block" name="Inloggen">Inloggen</button>

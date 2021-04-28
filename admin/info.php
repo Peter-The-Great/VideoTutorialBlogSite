@@ -5,7 +5,8 @@ if (!isset($_SESSION["loggedin"])) {
     header("Location: ../index.php");
     exit();
 }
-
+$token = bin2hex(openssl_random_pseudo_bytes(32));
+$_SESSION['token'] =  $token;
 if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
     $stmt->execute();
     $stmt->store_result();
@@ -36,6 +37,7 @@ if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
 <?php require("navbar.php"); ?>
     <div class="container mt-2">
         <form method="POST" action="../php/changebiografie.php">
+            <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
             <div class="form-group">
                 <label for="text">Info Tekst</label>
                 <textarea name="text" id="text"><?php echo $text;?></textarea required>

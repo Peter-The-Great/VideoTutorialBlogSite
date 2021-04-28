@@ -6,7 +6,10 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
-
+if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
+        echo "Wrong Token";
+        header("Location: ../admin/info.php?error=token");
+    }
 // Insert into DATABASE
 if(isset($_POST["text"])){
     $sql = "UPDATE info SET text=? WHERE id=1";

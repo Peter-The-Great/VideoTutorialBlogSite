@@ -5,6 +5,10 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
+if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
+        echo "Wrong Token";
+        header("Location: ../admin/profile.php?error=token");
+}
 // Update into DATABASE
 if(isset($_POST["username"],$_POST["password"],$_POST["openname"],$_POST["email"],$_POST["Huidige_Afbeelding"])){
     

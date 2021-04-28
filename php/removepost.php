@@ -6,7 +6,6 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
-
 //Hier moet een get die de id uit de url gaat halen
 //basic delete function and deletion of an image with the part itself
 $id = $_GET["id"];

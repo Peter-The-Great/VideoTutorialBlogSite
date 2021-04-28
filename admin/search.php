@@ -9,8 +9,6 @@ $sql = "SELECT id,titel,date FROM subject WHERE `titel` LIKE '%". $_POST['search
 $result = $conn->query($sql);
 $sql2 = "SELECT id,name FROM cat;";
 $result2 = $conn->query($sql2);
-$username = $_SESSION['name'];
-$id = $_SESSION['id'];
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,8 +49,7 @@ $id = $_SESSION['id'];
 					<th scope="col">Verwijderen</th>
 				</tr>
 			</thead>
-			<tbody>
-
+			<tbody id="table-body">
 				<?php
 				foreach ($result as $item) {
 					echo "<td>" . $item["titel"] . "</td><td>" .  $item["date"] . "</td></td><td><a href='../video.php?id=" . $item['id'] . "' class='btn btn-info btn-lg'><i class='fas fa-eye'></i></a></td><td><a href='changepost.php?id=" . $item['id'] . "' class='btn btn-warning btn-lg'><i class='fas fa-user-edit'></i></a></td><td><button type='button' data-bs-toggle='modal' data-bs-target='#post". $item['id'] ."' class='btn btn-danger btn-lg'><i class='fas fa-trash-alt'></i></button></td><tr>
@@ -131,5 +128,6 @@ $id = $_SESSION['id'];
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <?php require("scripts.php"); ?>
+<script type="text/javascript" src="search.js"></script>
 </body>
 </html>

@@ -9,6 +9,9 @@ if (!isset($_SESSION["loggedin"])) {
 $sql = "SELECT id, name FROM cat;";
 $result = $conn->query($sql);
 
+$token = bin2hex(openssl_random_pseudo_bytes(32));
+$_SESSION['token'] =  $token;
+
 if($stmt = $conn->prepare("SELECT titel,subtext,text,image,video,leerlijn FROM subject WHERE id = ?")) {
     $stmt->bind_param("s", $_GET["id"]);
     $stmt->execute();
@@ -127,6 +130,7 @@ if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
 <?php require("navbar.php"); ?>
     <div class="container mt-2">
         <form method="POST" enctype="multipart/form-data" action="../php/changepost.php?id=<?php echo $_GET['id']; ?>">
+            <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
             <div class="form-group">
                 <label for="titel">Titel</label>
                 <input name="title" id="titel" class="form-control" placeholder="Titel" type="text" value="<?php echo $title;?>" required>
