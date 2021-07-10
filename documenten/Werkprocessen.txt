@@ -1,10 +1,11 @@
-Pjotr: Stelt de opdracht vast,
-Optimaliseert het product,
-test het product,
+Pjotr: Stelt de opdracht vast, 
+Optimaliseert het product, 
+test het product, 
 levert het product op,
+Realiseert onderdelen van een product
 
 Floris: Levert een bijdrage aan het projectplan,
 levert bijdrage aan het ontwerp,
-bereidt de realisatie voor,
+bereidt de realisatie voor
 onderhoudt een applicatie, 
 beheert gegevens

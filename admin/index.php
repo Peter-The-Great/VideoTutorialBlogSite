@@ -46,18 +46,18 @@ $_SESSION['token'] =  $token;
                     <button id="submit" type="submit" class="btn btn-dark btn-block" name="Inloggen">Inloggen</button>
                 </div>
                 <?php
-        if(isset($_GET['error'])) {
-            if ($_GET['error'] == "password") {
-                echo "<p style='color: red;'>That account does not exist or the password you provided was incorrect.</p>";
-            }
-            else if ($_GET['error'] == "captcha") {
-                echo "<p style='color: red;'>Google could not verrify that you where a human.</p>";
-            }
-            else {
-                echo "<p style='color: red;'>There was a connection issue between you and our servers.</p>";
-            }
-        }
-        ?>
+                      if(isset($_GET['error'])) {
+                        if ($_GET['error'] == "password") {
+                            echo "<p style='color: red;'>That account does not exist or the password you provided was incorrect.</p>";
+                        }
+                        else if ($_GET['error'] == "captcha") {
+                            echo "<p style='color: red;'>Google could not verrify that you where a human.</p>";
+                        }
+                        else {
+                            echo "<p style='color: red;'>There was a connection issue between you and our servers.</p>";
+                        }
+                    }
+                ?>
             </form>
             <a href="../index.php">← Terug naar homepage</a>
         </div>
