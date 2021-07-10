@@ -27,11 +27,11 @@ $verify = file_get_contents($url, false, $context);
 $captcha_success=json_decode($verify);
 
 if ($captcha_success->success==false) {
-    header("Location: inlog.php?catpcha=false");
+    header("Location: ../../admin/index.php?catpcha=false");
 } else if ($captcha_success->success==true) {
     if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
         echo "Wrong Token";
-        header("Location: opdracht9.php?error=token");
+        header("Location: ../../admin/index.php?error=token");
     }
 //here we are making a prepared statement so that we can use it to find our user.
     if($stmt = $conn->prepare("SELECT id,username,password FROM admin WHERE username = ?")) {
