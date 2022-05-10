@@ -17,7 +17,7 @@ $_SESSION['token'] =  $token;
     <?php require("style.php"); ?>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/login.css">
-    <title>Login - <?php echo $open ?></title>
+    <title>Login - User</title>
 </head>
 
 <body>
