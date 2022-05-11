@@ -3,14 +3,10 @@ require("../php/database.php");
 session_start();
 $token = bin2hex(openssl_random_pseudo_bytes(32));
 $_SESSION['token'] =  $token;
-if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FROM `admin` WHERE `ID` = '52086616-c85c-4363-98f0-4dcd698ec356';")) {
-    $stmt->execute();
-    $stmt->store_result();
 
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($uname, $email, $name,  $prof);
-        $stmt->fetch();
-        $stmt->close();
+if($stmt = $database->select("admin", ["username", "email", "realname", "profile"], ["ID" => $_SESSION["id"]])) {
+    if (count($stmt) == 0) {
+        header("Location: dashboard.php?error=noprofile");
     }
 }
 ?>
@@ -32,11 +28,15 @@ if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FRO
 <body>
 <?php require("navbar.php"); ?>
 <div class="container mt-2">
+    <?php
+    //hier doen we een foreach data stukje erin.
+    foreach ($stmt as $data) {    
+    ?>
         <form method="POST" enctype="multipart/form-data" action="../php/changeprofile.php">
         <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
         <div class="form-group">
                 <label for="username">Gebruikersnaam</label>
-                <input type="text" class="form-control rounded" name="username" id="username" value="<?php echo $uname; ?>" required>
+                <input type="text" class="form-control rounded" name="username" id="username" value="<?php echo $data['username']; ?>" required>
             </div>
             <div class="form-group">
                     <label>Wachtwoord</label>
@@ -46,16 +46,17 @@ if($stmt = $conn->prepare("SELECT `username`, `email`, `realname`, `profile` FRO
                 </div>
             <div class="form-group">
                 <label for="openname">Echte Naam</label>
-                <input type="text" class="form-control rounded" name="openname" id="openname" value="<?php echo $name; ?>" required>
+                <input type="text" class="form-control rounded" name="openname" id="openname" value="<?php echo $data['realname']; ?>" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control rounded" name="email" id="email" value="<?php echo $email; ?>" required>
+                <input type="email" class="form-control rounded" name="email" id="email" value="<?php echo $data['email']; ?>" required>
             </div>
             <div class="form-group">
                 <label for="foto">Huidige Achtergrond Foto</label><br>
-                <input hidden="1" readonly="1" class="form-control rounded" name="Huidige_Afbeelding" value="<?php echo $prof;?>"><img class="img-fluid rounded" src="../<?php echo $prof ;?>">
+                <input hidden="1" readonly="1" class="form-control rounded" name="Huidige_Afbeelding" value="<?php echo $data['profile'];?>"><img class="img-fluid rounded" src="../<?php echo $data['profile'] ;?>">
             </div>
+            <?php } ?>
             <div class="form-group">
                 <label for="foto">Achtergrond Foto</label>
                 <input name="image" class="form-control-file" type="file">

@@ -1,8 +1,8 @@
 //This will greet you at a specific time of the day.
 $( document ).ready(function() {
-	var myDate = new Date();
-	var hrs = myDate.getHours();
-	var greet;
+	let myDate = new Date();
+	let hrs = myDate.getHours();
+	let greet;
 	if (hrs < 12){
 		greet = 'Goedemorgen';
 	}
@@ -17,7 +17,7 @@ $("#Inloggen").html(""+ greet);
 
 //This will turn the text of a type password into a type text to make the text vissible
 $("#showitbtn").click(function(){
-    		var input = $("#password");
+    		let input = $("#password");
     		if (input.attr("type") == "password") {
     			input.attr("type", "text");
     			$("#eyes").toggleClass("fas fa-eye fa-eye-slash");

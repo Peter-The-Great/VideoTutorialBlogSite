@@ -35,9 +35,7 @@ if (in_array($type,$Toegestaan)){
     header("Location: dashboard.php?error=nietgeupload");
 }
 $randomid = uuidv4();
-    if ($stmt = $conn->prepare("INSERT INTO `cat` (`ID`, `name`, `subtext`, `headimage`) values (?, ?, ?, ?)")) {
-        $stmt->bind_param("ssss", $randomid, $name, $_POST['subtext'], $new_str);
-        $stmt->execute();
+    if ($database->insert("cat", ["ID" => $randomid, "name" => $name, "subtext" => $_POST['subtext'], "headimage" => $new_str])) {
         header("Location: ../admin/dashboard.php");
     } 
     else {

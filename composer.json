@@ -1,0 +1,16 @@
+{
+    "name": "peter-the-great/blogsite",
+    "description": "A simple blog site made with no preexisting build",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Peter-The-Great",
+            "email": "PjotrW15@Gmail.com"
+        }
+    ],
+    "require": {
+        "catfan/medoo": "^2.1",
+        "vlucas/phpdotenv": "^5.4"
+    }
+}

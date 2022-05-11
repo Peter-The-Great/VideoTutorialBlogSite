@@ -1,10 +1,8 @@
 <?php
 require("php/database.php");
 session_start();
-$sql1 = "SELECT `id`, `titel`, `subtext`, `image` FROM `subject` WHERE `uitgelicht` = 1 ORDER BY date LIMIT 2";
-$result1 = $conn->query($sql1);
-$sql2 = "SELECT id, name, subtext, headimage FROM cat LIMIT 6;";
-$result2 = $conn->query($sql2);
+$result1 = $database->select("subject", ["id", "titel", "subtext", "image"], ["uitgelicht" => 1, "ORDER" => "date", "LIMIT" => 2]);
+$result2 = $database->select("cat", ["id", "name", "subtext", "headimage"], ["LIMIT" => 6]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +23,7 @@ $result2 = $conn->query($sql2);
     <h1 class="display-1 text-center fw-bolder">Vandaag in de Spotlight:</h1>
     <div class="mt-4 mb-5 d-flex justify-content-center">
     	<?php
-    	if ($result1->num_rows === 0){
+    	if (!$result1){
         echo "<h1>Vandaag zijn er geen uitgelichte video's</h1>";
       }
     	foreach ($result1 as $item) {
@@ -49,7 +47,7 @@ $result2 = $conn->query($sql2);
     <h2 class="fw-bold text-center mb-5">Bekijk hieronder andere programmeertalen:</h2>
     <div class="row mb-5">
     <?php
-    if ($result2->num_rows === 0){
+    if (!$result2){
         echo "<h1>Vandaag zijn er geen uitgelichte video's</h1>";
       }
       foreach ($result2 as $item2) {

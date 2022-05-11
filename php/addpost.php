@@ -46,9 +46,7 @@ if (in_array($type,$Toegestaan)){
     header("Location: createpost.php?error=nietgeupload");
 }
 $randomid = uuidv4();
-    if ($stmt = $conn->prepare("INSERT INTO subject (id, titel, subtext, text, image, video, leerlijn, uitgelicht) values (?, ?, ?, ?, ?, ?, ?, ?)")) {
-        $stmt->bind_param("ssssssss", $randomid, $titel, $_POST['subtext'], $_POST['text'], $new_str, $vidstring, $_POST['leer'], $_POST['uit']);
-        $stmt->execute();
+    if ($database->insert("subject", ["id" => $randomid, "titel"=> $titel, "subtext"=> $_POST['subtext'], "text"=> $_POST['text'], "image"=> $new_str, "video" => $vidstring, "leerlijn" => $_POST['leer'], "uitgelicht" => $_POST['uit']])) {
         header("Location: ../admin/dashboard.php");
     } 
     else {
