@@ -10,18 +10,11 @@ if (!isset($_SESSION["loggedin"])) {
 //basic delete function and deletion of an image with the part itself
 $id = $_GET["id"];
 $unlink = "../";
-$stmt = $conn->prepare("SELECT `headimage` FROM cat WHERE `ID` = ?");
-$stmt->bind_param("s", $id);
-$stmt->execute();
-$stmt->store_result();
-$stmt->bind_result($Huidig);
-$stmt->fetch();
-unlink($unlink.$Huidig);
+$stmt = $database->select("cat", ["headimage"], ["ID" => $id]);
+unlink($unlink.$stmt[0]["headimage"]);
 
 if(isset($id)){
-    $stmt = $conn->prepare("DELETE FROM cat WHERE `ID` = ?");
-    $stmt->bind_param("s", $id);
-    $stmt->execute();
+    $database->delete("cat", ["ID" => $id]);
 }
 
 header("location: ../admin/dashboard.php");

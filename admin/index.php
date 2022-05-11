@@ -17,7 +17,7 @@ $_SESSION['token'] =  $token;
     <?php require("style.php"); ?>
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <link rel="stylesheet" type="text/css" href="../css/login.css">
-    <title>Login - User</title>
+    <title>Login - <?php echo $open; ?></title>
 </head>
 
 <body>
@@ -31,23 +31,23 @@ $_SESSION['token'] =  $token;
                 <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
                 <div class="form-group">
                     <label>Gebruikersnaam</label>
-                    <input name="username" id="username" lenght="60" class="form-control" placeholder="Gebruikersnaam" type="username">
+                    <input value="admin" name="username" id="username" lenght="60" class="form-control" placeholder="Gebruikersnaam" type="username">
                 </div>
                 <div class="form-group">
                     <label>Wachtwoord</label>
-                    <input name="password" id="password" lenght="60" class="form-control rounded" placeholder="******" type="password">
+                    <input value="admin" name="password" id="password" lenght="60" class="form-control rounded" placeholder="******" type="password">
                     <button id="showitbtn" class="btn" type="button"><i id="eyes" class="fas fa-eye"></i>
                     </button>
                 </div>
                 <div class="form-group">
-                <div class="g-recaptcha brochure__form__captcha" data-sitekey="6Le3GeIZAAAAAGUCdhhsn-8ML2jU7CPQKWceHLwc"></div><br>
+                <div class="g-recaptcha brochure__form__captcha" name="g-recaptcha-response" data-sitekey="<?php echo $_ENV['RECAPTCHA_KEY']; ?>"></div><br>
                 </div>
                 <div class="form-group">
                     <button id="submit" type="submit" class="btn btn-dark btn-block" name="Inloggen">Inloggen</button>
                 </div>
                 <?php
                       if(isset($_GET['error'])) {
-                        if ($_GET['error'] == "password") {
+                        if ($_GET['error'] == "pass") {
                             echo "<p style='color: red;'>That account does not exist or the password you provided was incorrect.</p>";
                         }
                         else if ($_GET['error'] == "captcha") {

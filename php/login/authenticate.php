@@ -13,11 +13,13 @@ $response = $_POST["g-recaptcha-response"];
 
 $url = 'https://www.google.com/recaptcha/api/siteverify';
 $data = array(
-    'secret' => '6Le3GeIZAAAAAOnO5JwQ4pnv0iAYtsUuxo2iYsuD', //Enter Captcha_Key
+    'secret' => $_ENV["RECAPTCHA_SECRET_KEY"], //Enter Captcha_Key
     'response' => $response
 );
 $options = array(
     'http' => array (
+        'header' => "Content-Type: application/x-www-form-urlencoded\r\n".
+                    "Content-Length: ".strlen(http_build_query($data))."\r\n",
         'method' => 'POST',
         'content' => http_build_query($data)
     )
@@ -33,24 +35,21 @@ if ($captcha_success->success==false) {
         echo "Wrong Token";
         header("Location: ../../admin/index.php?error=token");
     }
-//here we are making a prepared statement so that we can use it to find our user.
-    if($stmt = $conn->prepare("SELECT id,username,password FROM admin WHERE username = ?")) {
-        $stmt->bind_param("s", $_POST["username"]);
-        $stmt->execute();
-        $stmt->store_result();
 
-        if ($stmt->num_rows > 0) {
-            $stmt->bind_result($id, $username, $password);
-            $stmt->fetch();
+    //here we are making a prepared statement so that we can use it to find our user.
+    $stmt = $database->select("admin", ["id","username","password"], ["username" => $_POST['username']]);
+
+        //Here we check out the password and if the actually query got any information.
+        if (count($stmt) == 1) {
             //check for password and keep password in mind
             $pswrd = $_POST["password"];
             //for later if you want to change password
-            $_SESSION['wachtwoord'] = $pswrd;
-            if (sha1($pswrd) === $password) {
+            if (sha1($pswrd) === $stmt[0]["password"]) {
                 session_regenerate_id();
+                $_SESSION['wachtwoord'] = $pswrd;
                 $_SESSION["loggedin"] = TRUE;
-                $_SESSION["name"] = $username;
-                $_SESSION["id"] = $id;
+                $_SESSION["name"] = $stmt[0]["username"];
+                $_SESSION["id"] = $stmt[0]["id"];
                 header("Location: ../../admin/dashboard.php");
             } else {
                 session_start();
@@ -62,7 +61,6 @@ if ($captcha_success->success==false) {
             session_destroy();
             header("Location: ../../admin/index.php?error=db");
         }
-        $stmt->close();
-    }
+    
 }
 ?>

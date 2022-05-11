@@ -7,7 +7,7 @@ require dirname(__DIR__) . '/vendor/autoload.php';
 
 //load the dotenv file in to get the variables
 $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
-$dotenv->safeLoad();
+$dotenv->load();
 
 // Using Medoo namespace.
 use Medoo\Medoo;

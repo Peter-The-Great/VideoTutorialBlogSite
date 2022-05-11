@@ -12,6 +12,7 @@ if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
     }
 // Insert into DATABASE
 if(isset($_POST["text"])){
+    //$database->update();
     $sql = "UPDATE info SET text=? WHERE id=1";
     if ($stmt = $conn->prepare($sql)) {
         $stmt->bind_param(
