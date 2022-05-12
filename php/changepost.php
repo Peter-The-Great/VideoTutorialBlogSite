@@ -25,11 +25,7 @@ if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_POST['Huidige_Afb
     $vidstring = $videostring1[0];
     //if it has no image dont put the post in a query
     if (empty($Afbeelding) || $Afbeelding['size'] == 0) {
-    $sql = "UPDATE subject SET titel=?, subtext=?, text=?, video=?, leerlijn=?, uitgelicht=? WHERE id=?";
-    if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("sssssss", $_POST['title'], $_POST['subtext'], $_POST['text'], $vidstring, $_POST['leer'], $_POST['uit'], $_GET['id']);
-        $stmt->execute();
-        //$stmt->close();
+    if ($database->update("subject", ["titel" => $_POST['title'], "subtext" => $_POST['subtext'], "text" => $_POST['text'], "video" => $vidstring, "leerlijn" => $_POST['leer'], "uitgelicht" => $_POST['uit']], ["id" => $_GET['id']])) {
         header("Location: ../admin/dashboard.php");
     }
     else {
@@ -43,11 +39,7 @@ elseif ($Afbeeldingnaam != $Huidig && in_array($type, $Toegestaan)) {
         $fileExt = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
         $new_str = $map . uniqid() . "_" . uniqid() . "." . $fileExt;
         move_uploaded_file($Tijdelijk, "../".$new_str);
-        $sql = "UPDATE subject SET titel=?, subtext=?, text=?, image=?, video=?, leerlijn=?, uitgelicht=? WHERE id=?";
-        if ($stmt = $conn->prepare($sql)) {
-            $stmt->bind_param("ssssssss", $_POST['title'], $_POST['subtext'], $_POST['text'], $new_str, $vidstring, $_POST['leer'], $_POST['uit'], $_GET['id']);
-            $stmt->execute();
-            //$stmt->close();
+        if ($database->update("subject", ["titel" => $_POST['title'], "subtext" => $_POST['subtext'], "text" => $_POST['text'], "image" => $new_str, "video" => $vidstring, "leerlijn" => $_POST['leer'], "uitgelicht" => $_POST['uit']], ["id" => $_GET['id']])) {
             header("Location: ../admin/dashboard.php");
         }
         else {

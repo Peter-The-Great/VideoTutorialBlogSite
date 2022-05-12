@@ -1,8 +1,7 @@
 <?php
 require("php/database.php");
 session_start();
-$sql = "SELECT `id`, `titel`, `image`, `subtext` FROM subject WHERE `titel` LIKE '%". $_POST['search'] ."%';";
-$result = $conn->query($sql);
+$result = $database->select("subject", ["id", "titel", "image", "subtext"], ["titel[~]" => "%" . $_POST['search'] . " %"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +20,7 @@ $result = $conn->query($sql);
 	<div class="container">
     <div id="rowing" class="row mb-5 mt-3">
     <?php
-    if ($result->num_rows === 0){
+    if (count($result) == 0){
         echo "<p>De video waar jij naar zocht kon niet worden gevodnen.</p>";
       }
                 foreach ($result as $item) {

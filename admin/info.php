@@ -7,14 +7,9 @@ if (!isset($_SESSION["loggedin"])) {
 }
 $token = bin2hex(openssl_random_pseudo_bytes(32));
 $_SESSION['token'] =  $token;
-if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($text);
-        $stmt->fetch();
-        $stmt->close();
+if($stmt = $database->select("info", ["text"], ["id" => 1])) {
+    if (count($stmt) == 0) {
+        header("Location: dashboard.php?error=noinfo");
     }
 }
 
@@ -40,7 +35,7 @@ if($stmt = $conn->prepare("SELECT text FROM info WHERE id = 1")) {
             <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
             <div class="form-group">
                 <label for="text">Info Tekst</label>
-                <textarea name="text" id="text"><?php echo $text;?></textarea required>
+                <textarea name="text" id="text"><?php echo $stmt[0]["text"];?></textarea required>
             </div>
             <div class="form-group">
                 <input type="submit" name="submit" class="btn btn-dark">

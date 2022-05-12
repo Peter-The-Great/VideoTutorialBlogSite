@@ -6,30 +6,24 @@ if (!isset($_SESSION["loggedin"])) {
     exit();
 }
 
-$sql = "SELECT id, name FROM cat;";
-$result = $conn->query($sql);
+$result = $database->select("cat", ["id", "name"]);
 
 $token = bin2hex(openssl_random_pseudo_bytes(32));
 $_SESSION['token'] =  $token;
 
-if($stmt = $conn->prepare("SELECT titel,subtext,text,image,video,leerlijn FROM subject WHERE id = ?")) {
-    $stmt->bind_param("s", $_GET["id"]);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $stmt->bind_result($title, $subtext, $text, $image, $video, $leerlijn);
-        $stmt->fetch();
+//Here we are getting our information about a specific post. so that we can update that post.
+if($stmt = $database->select("subject", ["titel","subtext","text","image","video","leerlijn"], ["id" => $_GET['id']])) {
+    $leerlijn = $stmt[0]["leerlijn"];
+    if (count($stmt) == 0) {
+        header("Location: dashboard.php?error=nopost");
     }
 }
-if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
-    $stmt2->bind_param("s", $leerlijn);
-    $stmt2->execute();
-    $stmt2->store_result();
-
-    if ($stmt2->num_rows > 0) {
-        $stmt2->bind_result($leerlijnnaam);
-        $stmt2->fetch();
+//Here we are also recieving the category name for our post so that we can accuratly change it.
+if($stmt2 = $database->select("cat", ["name"], ["id" => $leerlijn])) {
+    $leerlijnnaam = $stmt2[0]["name"];
+    
+    if (count($stmt2) == 0) {
+        $leerlijnnaam = "";
     }
 }
 ?>
@@ -128,12 +122,13 @@ if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
 
 <body>
 <?php require("navbar.php"); ?>
+<?php foreach ($stmt as $data) { ?>
     <div class="container mt-2">
         <form method="POST" enctype="multipart/form-data" action="../php/changepost.php?id=<?php echo $_GET['id']; ?>">
             <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
             <div class="form-group">
                 <label for="titel">Titel</label>
-                <input name="title" id="titel" class="form-control" placeholder="Titel" type="text" value="<?php echo $title;?>" required>
+                <input name="title" id="titel" class="form-control" placeholder="Titel" type="text" value="<?php echo $data["titel"];?>" required>
             </div>
             <div class="form-group">
                 <label for="video">Video</label>
@@ -141,15 +136,15 @@ if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
             </div>
             <div class="form-group">
                 <label for="subtext">Sub Tekst</label>
-                <textarea name="subtext" id="subtext"><?php echo $subtext;?></textarea required>
+                <textarea name="subtext" id="subtext"><?php echo $data["subtext"];?></textarea required>
             </div>
             <div class="form-group">
                 <label for="text">Tekst</label>
-                <textarea name="text" id="text"><?php echo $text;?></textarea required>
+                <textarea name="text" id="text"><?php echo $data["text"];?></textarea required>
             </div>
             <div class="form-group">
                 <label for="Huidige_Afbeelding">Huidige Achtergrond Foto</label><br>
-                <input hidden="1" readonly="1" name="Huidige_Afbeelding" value="<?php echo $image;?>"><img src="../<?php echo "" . $image . "";?>" width="120" height="110">
+                <input hidden="1" readonly="1" name="Huidige_Afbeelding" value="<?php echo $data["image"];?>"><img src="../<?php echo "" . $data["image"] . "";?>" width="120" height="110">
             </div>
             <div class="form-group">
                 <label for="foto">Achtergrond Foto</label>
@@ -167,6 +162,7 @@ if($stmt2 = $conn->prepare("SELECT name FROM cat WHERE id = ?")) {
                 ?>
                 </select>
             </div>
+        <?php } ?>
             <div class="form-group">
             <label for="uit">Uitgelicht</label>
             <div class="form-check">

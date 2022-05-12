@@ -37,8 +37,7 @@ if ($captcha_success->success==false) {
     }
 
     //here we are making a prepared statement so that we can use it to find our user.
-    $stmt = $database->select("admin", ["id","username","password"], ["username" => $_POST['username']]);
-
+    if ($stmt = $database->select("admin", ["id","username","password"], ["username" => $_POST['username']])) {
         //Here we check out the password and if the actually query got any information.
         if (count($stmt) == 1) {
             //check for password and keep password in mind
@@ -59,8 +58,13 @@ if ($captcha_success->success==false) {
         } else {
             session_start();
             session_destroy();
-            header("Location: ../../admin/index.php?error=db");
+            header("Location: ../../admin/index.php?error=sql");
         }
+    }else{
+        session_start();
+        session_destroy();
+        header("Location: ../../admin/index.php?error=db");
+    }
     
 }
 ?>
