@@ -9,7 +9,9 @@ if (!isset($_SESSION["loggedin"])) {
 if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
         echo "Wrong Token";
         header("Location: ../admin/info.php?error=token");
-    }
+    }else {
+    header('Location: ../admin/changebiografie.php?error=fields');
+}
 // Insert into DATABASE
 if(isset($_POST["text"])){
     $database->update("info", ["text" => $_POST['text']], ["id" => 1]);
@@ -17,8 +19,5 @@ if(isset($_POST["text"])){
     } 
     else {
         header('Location: ../admin/changebiografie.php?error=mysql');
-    } 
-}else {
-    header('Location: ../admin/changebiografie.php?error=fields');
-}
+    }
 ?>
