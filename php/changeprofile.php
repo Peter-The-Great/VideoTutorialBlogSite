@@ -22,7 +22,7 @@ if(isset($_POST["username"],$_POST["password"],$_POST["openname"],$_POST["email"
     $Toegestaan = array("image/jpg","image/jpeg", "image/png", "image/gif");
     
     if ($Afbeelding['size'] == 0) {
-    if ($database->update("admin", ["username" => $_POST["username"], "password" => sha1($_POST["password"], "realname" => $_POST["openname"], "email" => $_POST["email"], ["id" => $_SESSION["id"]]))) {
+    if ($database->update("admin", ["username" => $_POST["username"], "password" => password_hash($_POST["password"], PASSWORD_DEFAULT), "realname" => $_POST["openname"], "email" => $_POST["email"], ["id" => $_SESSION["id"]])) {
         header("Location: ../admin/dashboard.php");
     } 
     else {
@@ -39,7 +39,7 @@ elseif ($Afbeeldingnaam != $Huidig && in_array($type, $Toegestaan)) {
     move_uploaded_file($Tijdelijk, "../".$new_str);
 
     //Hier wordt de update query gemaakt
-    if ($database->update("admin", ["username" => $_POST["username"], "password" => sha1($_POST["password"], "realname" => $_POST["openname"], "email" => $_POST["email"], "profile" => $new_str], ["id" => $_SESSION["id"]]))) {
+    if ($database->update("admin", ["username" => $_POST["username"], "password" => password_hash($_POST["password"], PASSWORD_DEFAULT), "realname" => $_POST["openname"], "email" => $_POST["email"], "profile" => $new_str], ["id" => $_SESSION["id"]])) {
         header("Location: ../admin/dashboard.php");
     }
     else {

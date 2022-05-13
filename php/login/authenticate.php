@@ -43,7 +43,7 @@ if ($captcha_success->success==false) {
             //check for password and keep password in mind
             $pswrd = $_POST["password"];
             //for later if you want to change password
-            if (sha1($pswrd) === $stmt[0]["password"]) {
+            if (password_verify($pswrd, $stmt[0]["password"])) {
                 session_regenerate_id();
                 $_SESSION['wachtwoord'] = $pswrd;
                 $_SESSION["loggedin"] = TRUE;
