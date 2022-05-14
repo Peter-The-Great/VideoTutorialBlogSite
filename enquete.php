@@ -3,7 +3,6 @@ session_start();
 require('php/database.php');
 $token = bin2hex(openssl_random_pseudo_bytes(32));
 $_SESSION['token'] =  $token;
-$result = $database->select("cat", ["id", "name"]);
 ?>
 <!doctype html>
 <html lang="en">
@@ -21,7 +20,7 @@ $result = $database->select("cat", ["id", "name"]);
 <!-- Bij addpost staat de query voor het toevoegen dat we bij action hebben gezet. -->
     <div class="container mt-2">
         <div class="h1">Vull de enquete in.</div>
-        <form method="POST" enctype="multipart/form-data" action="../php/addpost.php">
+        <form method="POST" enctype="multipart/form-data" action="php/addenquete.php">
             <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
             <div class="form-group mb-2">
                 <label for="naam">Volledige Naam</label>
@@ -53,8 +52,8 @@ $result = $database->select("cat", ["id", "name"]);
                 </select>
             </div>
             <div class="form-group mb-2">
-                <label for="middel">Wat vind je van de begintijd van de lessen (8:15 uur)?</label>
-                <select class="form-group form-control" required name="middel">
+                <label for="begin">Wat vind je van de begintijd van de lessen (8:15 uur)?</label>
+                <select class="form-group form-control" required name="begin">
                 <option selected disabled>-- selecteer keuze --</option>
                 <option value="Te Vroeg">Te vroeg</option>
                 <option value="Goed">Goed</option>
@@ -62,8 +61,8 @@ $result = $database->select("cat", ["id", "name"]);
                 </select>
             </div>
             <div class="form-group mb-2">
-                <label for="middel">Wat vind je van de eindtijd van de lessen (17:15 uur)?</label>
-                <select class="form-group form-control" required name="middel">
+                <label for="eind">Wat vind je van de eindtijd van de lessen (17:15 uur)?</label>
+                <select class="form-group form-control" required name="eind">
                 <option selected disabled>-- selecteer keuze --</option>
                 <option value="Te Vroeg">Te vroeg</option>
                 <option value="Goed">Goed</option>
@@ -79,11 +78,14 @@ $result = $database->select("cat", ["id", "name"]);
             </div>
             <?php
             //Wanneer de post niet goed is uitgevoerd krijg je een error
-                if (isset($_GET['error=mysql'])) {
+                if (isset($_GET['return=mysql'])) {
                     echo "<span style='color: rgb(0,185,255);'>The form wasn't send correctly.</span>";
                 }
-                if (isset($_GET['error=fields'])) {
+                if (isset($_GET['return=fields'])) {
                     echo "<span style='color: rgb(0,185,255);'>The form wasn't send correctly or you forgot to fill some information.</span>";
+                }
+                if (isset($_GET['return=fields'])) {
+                    echo "<span style='color: rgb(0,185,255);'>Het formulier was succesvoll verzonden.</span>";
                 }
                 ?>
         </form>

@@ -1,57 +1,34 @@
 <?php
 session_start();
 require('database.php');
-if (!isset($_SESSION["loggedin"])) {
-	header("Location: ../index.php");
-	exit();
-}
 if(!isset($_SESSION["token"]) || $_SESSION["token"] !== $_POST["token"]){
         echo "Wrong Token";
-        header("Location: ../admin/createpost.php?error=token");
+        header("Location: ../enquete.php?return=ongeldigetoken");
 }
 // Insert into DATABASE
-if(isset($_POST["title"], $_POST["text"], $_POST["subtext"], $_POST['leer'], $_FILES['image'], $_POST['uit'], $_POST['video'])){
-$image = $_FILES['image'];
-$Tijdelijk = $image['tmp_name'];
-$imagenaam = $image['name'];
-$type = $image['type'];
-$map = 'uploads/';
-$Toegestaan = array("image/jpg","image/jpeg","image/png","image/gif");
-$titel = strip_tags(htmlspecialchars($_POST['title']));
+if(isset($_POST["naam"], $_POST["email"], $_POST["kilometer"], $_POST['min'], $_POST['middel'], $_POST['begin'], $_POST['eind'],$_POST['opmerkingen'])){
+    //Hier zorgen we ervoor dat we geen speciale karakters meeversturen.
+$naam = strip_tags(htmlspecialchars($_POST['naam']));
+$kilometer = strip_tags(htmlspecialchars($_POST['kilometer']));
+$min = strip_tags(htmlspecialchars($_POST['min']));
+$middel = strip_tags(htmlspecialchars($_POST['middel']));
+$begin = strip_tags(htmlspecialchars($_POST['begin']));
+$eind = strip_tags(htmlspecialchars($_POST['eind']));
+$opmerkingen = strip_tags(htmlspecialchars($_POST['opmerkingen']));
 
 //Get the video string
-$videostring = str_replace('https://www.youtube.com/watch?v=', '', $_POST['video']);
-$videostring1 = explode('&', $videostring);
-$vidstring = $videostring1[0];
+$studentnummer = str_replace('@glr.nl', '', $_POST['email']);
 
-
-//function to give a a unique id
-function uuidv4(){
-	$data = openssl_random_pseudo_bytes(16);
-
-	$data[6] = chr(ord($data[6]) & 0x0f | 0x40);
-	$data[8] = chr(ord($data[8]) & 0x3f | 0x80);
-
-	return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+//Valideer email
+if (!filter_var($_POST["email"], FILTER_VALIDATE_EMAIL)) {
+    header("Location: ../enquete.php?return=ongeldigeemail");
 }
-
-//here we are making sure that the image is moved to its right location.
-$afbeelding = $map.$imagenaam;
-$new_str = str_replace(' ', '', $afbeelding);
-$fileExt = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
-$new_str = $map . uniqid() . "_" . uniqid() . "." . $fileExt;
-if (in_array($type,$Toegestaan)){
-    move_uploaded_file($Tijdelijk, "../".$new_str);
-}else{
-    header("Location: createpost.php?error=nietgeupload");
-}
-$randomid = uuidv4();
-    if ($database->insert("subject", ["id" => $randomid, "titel"=> $titel, "subtext"=> $_POST['subtext'], "text"=> $_POST['text'], "image"=> $new_str, "video" => $vidstring, "leerlijn" => $_POST['leer'], "uitgelicht" => $_POST['uit']])) {
-        header("Location: ../admin/dashboard.php");
+    if ($database->insert("enquetes", ["id" => intval($studentnummer), "naam"=> $naam, "email"=> $_POST['email'], "kilometer"=> $kilometer, "min"=> $min, "middel" => $middel, "begin" => $begin, "eind" => $eind, "opmerkingen" => $opmerkingen])) {
+        header("Location: ../enquete.php?return=verzend");
     } 
     else {
-        header('Location: ../admin/createpost.php?error=mysql');
+        header('Location: ../enquete.php?return=mysql');
     } 
 } else {
-    header('Location: ../admin/createpost.php?error=fields');
+    header('Location: ../enquete.php?return=fields');
 }
