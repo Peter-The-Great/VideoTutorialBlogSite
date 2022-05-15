@@ -1,9 +1,7 @@
 <?php
 require("../php/database.php");
-$sql = "SELECT `id`, `titel`, `image`, `subtext` FROM subject WHERE `titel` LIKE '%". $_POST['search'] ."%';";
-$result = $conn->query($sql);
-
-if ($result->num_rows === 0){
+$result = $database->select("subject", ["id", "titel", "image", "subtext"], ["titel[~]" => "%" . $_POST['search'] . "%"]);
+if (count($result) == 0){
         echo "<p>De video waar jij naar zocht kon niet worden gevodnen.</p>";
       }
                 foreach ($result as $item) {

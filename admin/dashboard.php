@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
-$result = $database->select("subject", ["id", "titel", "date"], ["ORDER" => ["date", "date" => "DESC"]]);
+$result = $database->select("subject", ["id", "titel", "date"], ["ORDER" => ["date" => "DESC"]]);
 $result2 = $database->select("cat", ["id", "name"]);
 $username = $_SESSION['name'];
 $id = $_SESSION['id'];

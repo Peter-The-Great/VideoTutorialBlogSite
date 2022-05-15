@@ -4,7 +4,7 @@ $("#search").keyup(function(){
 		$("#table-body").html("");
 	}else{
             $.ajax({
-            url: "searchtest.php",
+            url: "search/enquetetest.php",
             method: "POST",
             data: {'search': invoer}
             })

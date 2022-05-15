@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
-$result = $database->select("subject", ["id", "titel", "date"], ["titel[~]" => "%" . $_POST['search'] . "%", "ORDER" => ["date", "date" => "DESC"]]);
+$result = $database->select("subject", ["id", "titel", "date"], ["titel[~]" => "%" . $_POST['search'] . "%", "ORDER" => ["date" => "DESC"]]);
 $result2 = $database->select("cat", ["id", "name"]);
 ?>
 <!doctype html>
@@ -126,6 +126,6 @@ $result2 = $database->select("cat", ["id", "name"]);
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <?php require("scripts.php"); ?>
-<script type="text/javascript" src="search.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
 </body>
 </html>

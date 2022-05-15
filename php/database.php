@@ -19,14 +19,4 @@ $database = new Medoo([
     'username' => $_ENV['DB_USER'],
     'password' => $_ENV['DB_PASSWORD']
 ]);
-    $user = 'root';
-    $pass = '';
-    $db = 'tutorial';
-    $host = '127.0.0.1';
-
-    // Here we create a mysqli connection to the database.
-    $conn = new mysqli($host, $user, $pass, $db) or die("Unable to connect");
-    if ($conn->connect_error){
-        die("Connection failed: " . $conn->connect_error);
-    }
 ?>

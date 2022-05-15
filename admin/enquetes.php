@@ -5,7 +5,7 @@ if (!isset($_SESSION["loggedin"])) {
 	header("Location: ../index.php");
 	exit();
 }
-$result = $database->select("enquetes", ["id", "naam", "email", "kilometer", "min", "middel", "begin", "eind", "opmerkingen"], ["ORDER" => ["date" => "DESC"]]);
+$result = $database->select("enquetes", ["id", "naam", "email", "kilometer", "min", "middel", "begin", "eind", "opmerkingen"], ["naam[~]" => "%" . $_POST['search'] . "%", "ORDER" => ["date" => "DESC"]]);
 ?>
 <!doctype html>
 <html lang="en">
@@ -14,7 +14,7 @@ $result = $database->select("enquetes", ["id", "naam", "email", "kilometer", "mi
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<?php require("style.php"); ?>
-	<title><?php echo $open; ?> - Enquetes</title>
+	<title><?php echo $open; ?> - Dashboard</title>
 </head>
 <body>
 <?php require("navbar.php"); ?>
@@ -36,8 +36,7 @@ $result = $database->select("enquetes", ["id", "naam", "email", "kilometer", "mi
 					<th scope="col">Opmerkingen</th>
 				</tr>
 			</thead>
-			<tbody>
-
+			<tbody id="table-body">
 				<?php
 				foreach ($result as $item) {
 					echo "<td>" . $item["id"] . "</td><td>" .  $item["naam"] . "</td><td>" .  $item["email"] . "</td><td>" .  $item["kilometer"] . " Kilometer</td><td>" .  $item["min"] . " Minuten</td><td>" .  $item["middel"] . "</td><td>" .  $item["begin"] . "</td><td>" .  $item["eind"] . "</td><td>" .  $item["opmerkingen"] . "</td><tr>";
@@ -49,5 +48,6 @@ $result = $database->select("enquetes", ["id", "naam", "email", "kilometer", "mi
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <?php require("scripts.php"); ?>
+<script type="text/javascript" src="search/enquete.js"></script>
 </body>
 </html>
