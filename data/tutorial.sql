@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 12 mei 2022 om 11:44
+-- Gegenereerd op: 15 mei 2022 om 12:09
 -- Serverversie: 10.4.21-MariaDB
 -- PHP-versie: 7.4.21
 
@@ -41,7 +41,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`, `profile`) VALUES
-('52086616-c85c-4363-98f0-4dcd698ec356', 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Mathijs54@Gmail.com', 'Mathijs Clasener', 'uploads/61f2abdd2df9a_61f2abdd2dfa0.png');
+('52086616-c85c-4363-98f0-4dcd698ec356', 'admin', '$2y$10$WGjiYR2xxjd65iIwyHqHyekxDGgXOi/O1se9tarGKVxe.vQfHykfK', 'Mathijs54@Gmail.com', 'Mathijs Clasener', 'uploads/61f2abdd2df9a_61f2abdd2dfa0.png');
 
 -- --------------------------------------------------------
 
@@ -74,6 +74,32 @@ INSERT INTO `cat` (`ID`, `name`, `subtext`, `headimage`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Tabelstructuur voor tabel `enquetes`
+--
+
+CREATE TABLE `enquetes` (
+  `id` int(12) NOT NULL,
+  `naam` varchar(64) NOT NULL,
+  `email` varchar(64) NOT NULL,
+  `kilometer` int(3) NOT NULL,
+  `min` int(3) NOT NULL,
+  `middel` varchar(64) NOT NULL,
+  `begin` varchar(64) NOT NULL,
+  `eind` varchar(64) NOT NULL,
+  `opmerkingen` text NOT NULL,
+  `date` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `enquetes`
+--
+
+INSERT INTO `enquetes` (`id`, `naam`, `email`, `kilometer`, `min`, `middel`, `begin`, `eind`, `opmerkingen`, `date`) VALUES
+(84669, 'Pjotr Wisse', '84669@glr.nl', 15, 45, 'Trein', 'Goed', 'Goed', 'Niet echt.', '2022-05-15 11:04:04');
+
+-- --------------------------------------------------------
+
+--
 -- Tabelstructuur voor tabel `info`
 --
 
@@ -87,7 +113,7 @@ CREATE TABLE `info` (
 --
 
 INSERT INTO `info` (`id`, `text`) VALUES
-(1, '<p>Mijn naam is Matthijs Clasener en ik ben leraar bij het Grafisch Lyceum Rotterdam en ik maak tutorial videos die ik op deze website wil tentoonstellen. Pellentesque sit amet orci arcu. Donec maximus lacus nunc, sed sagittis arcu tristique non. Cras pulvinar, libero non mollis malesuada, tellus magna cursus leo, commodo consequat ipsum lacus vel neque. Morbi sagittis congue ante vel aliquam. Hallo ik ben een persoon</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://84669.ict-lab.nl/Beroeps/VideoTutorialBlogSite/uploads/simg/logo.png\" alt=\"\" width=\"177\" height=\"177\" /></p>\r\n<p>Morbi finibus elit justo, vel gravida lectus elementum ullamcorper. Quisque dapibus sollicitudin tincidunt. Nam rutrum sem sed arcu tempus sodales. Suspendisse ullamcorper eget mi quis lobortis. Donec condimentum aliquam ipsum, quis accumsan massa placerat in. Suspendisse libero nulla, accumsan sed quam eget, maximus iaculis erat. erat erat. Take me to your x-box.</p>');
+(1, '<p>Mijn naam is Matthijs Clasener en ik ben leraar bij het Grafisch Lyceum Rotterdam en ik maak tutorial videos die ik op deze website wil tentoonstellen. Pellentesque sit amet orci arcu. Donec maximus lacus nunc, sed sagittis arcu tristique non. Cras pulvinar, libero non mollis malesuada, tellus magna cursus leo, commodo consequat ipsum lacus vel neque. Morbi sagittis congue ante vel aliquam. Hallo ik ben een persoon</p>\r\n<p><img style=\"display: block; margin-left: auto; margin-right: auto;\" src=\"https://raw.githubusercontent.com/Peter-The-Great/VideoTutorialBlogSite/main/uploads/simg/logo.png?token=ANQWW5UNIG7K4MLDTNWW5X3AZDBL6\" alt=\"\" width=\"221\" height=\"221\" /></p>\r\n<p>Morbi finibus elit justo, vel gravida lectus elementum ullamcorper. Quisque dapibus sollicitudin tincidunt. Nam rutrum sem sed arcu tempus sodales. Suspendisse ullamcorper eget mi quis lobortis. Donec condimentum aliquam ipsum, quis accumsan massa placerat in. Suspendisse libero nulla, accumsan sed quam eget, maximus iaculis erat. erat erat. Take me to your x-box.</p>');
 
 -- --------------------------------------------------------
 
@@ -136,6 +162,12 @@ ALTER TABLE `admin`
 --
 ALTER TABLE `cat`
   ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexen voor tabel `enquetes`
+--
+ALTER TABLE `enquetes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexen voor tabel `info`
