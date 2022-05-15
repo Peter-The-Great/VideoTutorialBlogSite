@@ -25,13 +25,24 @@ $_SESSION['token'] =  $token;
             <!-- Shadow, Center in the middle of screen -->
             <!-- Logo-->
             <center><img class="img-fluid rounded-circle" src="../<?php echo $profilepic ?>"></center>
-            <h5 id="Inloggen"></h5><h4 class="card-title mb-4 mt-1"><?php echo $open; ?></h4>
             <!-- Forum Itself -->
-            <form method="POST" action="../php/login/authenticate.php">
+            <form method="POST" enctype="multipart/form-data" action="../php/register.php">
                 <input type="hidden" style="visibility: hidden;" name="token" value="<?php echo $token;?>">
+                <div class="form-group">
+                    <label>Volledige naam</label>
+                    <input name="openname" id="openname" lenght="60" class="form-control" placeholder="John Doe" type="text">
+                </div>
                 <div class="form-group">
                     <label>Gebruikersnaam</label>
                     <input name="username" id="username" lenght="60" class="form-control" placeholder="Gebruikersnaam" type="username">
+                </div>
+                <div class="form-group">
+                    <label>E-mail</label>
+                    <input name="email" id="email" class="form-control" placeholder="12345@glr.nl" type="email">
+                </div>
+                <div class="form-group">
+                    <label for="foto">Achtergrond Foto</label>
+                    <input name="image" class="form-control-file" type="file">
                 </div>
                 <div class="form-group">
                     <label>Wachtwoord</label>
@@ -43,7 +54,7 @@ $_SESSION['token'] =  $token;
                 <div class="g-recaptcha brochure__form__captcha" name="g-recaptcha-response" data-sitekey="<?php echo $_ENV['RECAPTCHA_KEY']; ?>"></div><br>
                 </div>
                 <div class="form-group">
-                    <button id="submit" type="submit" class="btn btn-dark btn-block" name="Inloggen">Inloggen</button>
+                    <button id="submit" type="submit" class="btn btn-dark btn-block" name="Inloggen">Registeren</button>
                 </div>
                 <?php
                       if(isset($_GET['error'])) {

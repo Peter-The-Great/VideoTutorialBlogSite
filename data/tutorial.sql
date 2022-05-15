@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 mei 2022 om 12:09
+-- Gegenereerd op: 15 mei 2022 om 19:11
 -- Serverversie: 10.4.21-MariaDB
 -- PHP-versie: 7.4.21
 
@@ -41,7 +41,8 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`ID`, `username`, `password`, `email`, `realname`, `profile`) VALUES
-('52086616-c85c-4363-98f0-4dcd698ec356', 'admin', '$2y$10$WGjiYR2xxjd65iIwyHqHyekxDGgXOi/O1se9tarGKVxe.vQfHykfK', 'Mathijs54@Gmail.com', 'Mathijs Clasener', 'uploads/61f2abdd2df9a_61f2abdd2dfa0.png');
+('52086616-c85c-4363-98f0-4dcd698ec356', 'admin', '$2y$10$WGjiYR2xxjd65iIwyHqHyekxDGgXOi/O1se9tarGKVxe.vQfHykfK', 'Mathijs54@Gmail.com', 'Mathijs Clasener', 'uploads/61f2abdd2df9a_61f2abdd2dfa0.png'),
+('e949d370-9cd8-466e-a508-fb24124f20f4', 'Johnny', '$2y$10$wGGvTxdyrV.5Y/vH/ryqnOYYndeGWl/5E9OFLp6cSPDU.L28VbzxW', 'JohnDoe@gmail.com', 'John Doe', 'uploads/simg62813421441bc_62813421441c6.jpg');
 
 -- --------------------------------------------------------
 
